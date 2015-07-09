@@ -8,6 +8,18 @@ body{
 	padding-top: 70px;
 }
 
+.navbar{
+	padding-left: 3em !important;
+}
+
+#nav-left{
+	padding-left: 3em !important;
+}
+
+.navbar-right{
+	padding-right: 3em !important;
+}
+
 #logo{
 	font-size: 1.8em;
 }
@@ -60,13 +72,29 @@ a:visited{
 }
 
 .form-center{
-	width: 60%;
-	margin:0 auto;
-	padding-top: 2em;
+	width: 60% !important;
+	margin:0 auto !important;
+	padding-top: 2em !important;
+}
+
+.form-control{
+	border: none;
+	border-bottom: 1px solid;
+	outline: none;
+	width: 100%;
+	display: block;
+	padding: 10px 0px;
+	font-size: 1.2em;
+}
+
+.field, .actions{
+	margin-top: 1em;
 }
 
 .show-center{
-	width: 90%;
-	margin:0 auto;
-	padding-top: 2em;
+	width: 80% !important;
+	margin:0 auto !important;
+	padding-top: 2em !important;
 }
+
+

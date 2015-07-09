@@ -1,1 +1,6 @@
-<h1>Bienvenido a Facturación Hack</h1>
+<% if user_signed_in? %>
+  <h1><strong>Bienvenido <%= current_user.username %></strong></h1>.
+  <% else %>
+  <h1><strong>Bienvenido</strong></h1>.
+<% end %>
+

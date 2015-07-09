@@ -33,6 +33,8 @@ gem 'formtastic', '~> 3.0'
 
 gem 'formtastic-bootstrap'
 
+gem 'devise'
+
 
 
 # Use ActiveModel has_secure_password
