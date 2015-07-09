@@ -1,22 +1,44 @@
 html, body{
 	margin: 0;
 	font-family: 'Roboto', sans-serif;
+	font-size: 1em !important;
 }
 
 #logo{
 	font-size: 1.5em;
 }
 
+.font-medium{
+	font-size: 1.2em;
+}
+
 .be-blue{
-	background-color: #0990CC;
+	background-color: #0990CC !important;	
 }
 
-.white{
-	color: white;
+.be-transparent{
+	background-color: transparent !important;
+	border-color: transparent !important;	
 }
 
-.large-padding{
-	padding: 5px 5px;
+.text-white{
+	color: white !important;
+}
+
+.text-hack{
+	color: #0990CC !important;
+}
+
+.text-green{
+	color: green !important;
+}
+
+.text-blue{
+	color: blue !important;
+}
+
+.text-red{
+	color: red !important;
 }
 
 a:link{
