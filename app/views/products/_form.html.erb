@@ -1,0 +1,10 @@
+<% name ||= "Crear" %>
+<h1><%= name %> Producto</h1>
+<% @product.errors %>
+	<%= semantic_form_for @product do |f| %>
+	<%= f.input :nombre, placeholder: "Nombre del producto aquí" %>
+	<%= f.input :descripcion, placeholder: "Descripción" %>
+	<%= f.input :precio, placeholder: "Precio" %>
+	<%= f.submit "Guardar", :class => 'text-green be-transparent font-medium' %>
+	<%= link_to "Cancelar", "/products", :class => 'text-red font-medium' %> 
+	<% end %>	

@@ -1,30 +1,30 @@
-<div>
+<div class="show-center">
 	<h1>Productos</h1>
-	<%= link_to "Nuevo Producto", new_product_path, :class => 'text-hack' %>
-</div>
-<div class="table-responsive">
-	<table class="table table-hover">
-		<thead>
-			<th>N°</th>
-			<th>Nombre</th>
-			<th>Descripcion</th>
-			<th>Precio</th>
-			<th></th>
-			<th></th>
-			<th></th>
-		</thead>
-		<tbody>
-			<% @products.each_with_index do |product, index| %>
-			<tr>
-				<td><%= index + 1 %></td>
-				<td><%= product.nombre %></td>
-				<td><%= product.descripcion %></td>
-				<td><%= product.precio %></td>
-				<td><%= link_to  "Detalles", product_path(product), :class => 'text-green'  %></td>
-				<td><%= link_to  "Editar", edit_product_path(product), :class => 'text-blue' %></td>
-				<td><%= link_to "Borrar", product, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'text-red' %></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
+	<%= link_to "Crear Nuevo Producto", new_product_path, :class => 'text-hack font-medium' %>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<th>N°</th>
+				<th>Nombre</th>
+				<th>Descripción</th>
+				<th>Precio</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</thead>
+			<tbody>
+				<% @products.each_with_index do |product, index| %>
+				<tr>
+					<td><%= index + 1 %></td>
+					<td><%= product.nombre %></td>
+					<td><%= product.descripcion %></td>
+					<td><%= product.precio %></td>
+					<td><%= link_to  "Detalles", product_path(product), :class => 'text-green'  %></td>
+					<td><%= link_to  "Editar", edit_product_path(product), :class => 'text-blue' %></td>
+					<td><%= link_to "Borrar", product, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'text-red' %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
 </div>

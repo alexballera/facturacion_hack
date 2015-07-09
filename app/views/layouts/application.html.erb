@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Hack</title>
+  <link rel="shortcut icon" type="image/png" href="images/favicon.png">
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -9,7 +10,7 @@
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-default be-blue">
+		<nav class="navbar navbar-default navbar-fixed-top be-blue">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
@@ -24,15 +25,16 @@
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
 		        <li><%= link_to "Hack", root_path, :class => 'text-white', id:"logo" %></li>		
-						<li><%= link_to "Facturas", products_path, :class => 'text-white' %></li>
-						<li><%= link_to "Clientes", products_path, :class => 'text-white' %></li>
-						<li><%= link_to "Proveedores", products_path, :class => 'text-white' %></li>
-						<li><%= link_to "Productos", products_path, :class => 'text-white' %></li>
+						<li><%= link_to "Facturas", products_path, :class => 'text-white font-medium' %></li>
+						<li><%= link_to "Clientes", products_path, :class => 'text-white font-medium' %></li>
+						<li><%= link_to "Proveedores", products_path, :class => 'text-white font-medium' %></li>
+						<li><%= link_to "Productos", products_path, :class => 'text-white font-medium' %></li>
 		      </ul>    
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 	</header>
-<%= yield %>
+<%= bootstrap_flash %>  
+<%= yield %>	
 </body>
 </html>

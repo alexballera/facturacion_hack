@@ -4,8 +4,12 @@ html, body{
 	font-size: 1em !important;
 }
 
+body{
+	padding-top: 70px;
+}
+
 #logo{
-	font-size: 1.5em;
+	font-size: 1.8em;
 }
 
 .font-medium{
@@ -14,6 +18,8 @@ html, body{
 
 .be-blue{
 	background-color: #0990CC !important;	
+	padding: 10px;
+	border: none !important;
 }
 
 .be-transparent{
@@ -45,6 +51,22 @@ a:link{
 	text-decoration: none;
 }
 
+a:hover{
+	text-decoration: none !important;
+}
+
 a:visited{
 	color: inherit;
+}
+
+.form-center{
+	width: 60%;
+	margin:0 auto;
+	padding-top: 2em;
+}
+
+.show-center{
+	width: 90%;
+	margin:0 auto;
+	padding-top: 2em;
 }
