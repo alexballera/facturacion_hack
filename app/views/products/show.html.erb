@@ -6,12 +6,16 @@
         <th>Nombre</th>
         <th>Descripción</th>
         <th>Precio</th>
+        <th>Creado por</th>
       </thead>
       <tbody>
         <tr>
           <td><%= @product.nombre %></td>
           <td><%= @product.descripcion %></td>
           <td><%= @product.precio %></td>
+          <% unless @product.user.nil? %>
+          <td><%= @product.user.username %></td>
+          <%end%>
         </tr>
       </tbody>
     </table>

@@ -11,7 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709045615) do
+ActiveRecord::Schema.define(version: 20150709231857) do
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "nombre",         limit: 15
+    t.string   "apellido",       limit: 15
+    t.string   "identificacion", limit: 15
+    t.string   "email",          limit: 30
+    t.string   "telefono",       limit: 15
+    t.string   "direccion",      limit: 150
+    t.string   "descripcion",    limit: 150
+    t.integer  "tipo",                       default: 0
+    t.integer  "frecuencia",                 default: 0
+    t.integer  "user_id"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "clients", ["user_id"], name: "index_clients_on_user_id"
+
+  create_table "operations", force: :cascade do |t|
+    t.integer  "operacion",                                      default: 0
+    t.integer  "pago",                                           default: 0
+    t.integer  "factura",                                        default: 0
+    t.integer  "cantidad",    limit: 4,                          default: 1,            null: false
+    t.decimal  "subtotal",              precision: 10, scale: 2
+    t.decimal  "impuestos",             precision: 10, scale: 2
+    t.decimal  "total",                 precision: 10, scale: 2
+    t.decimal  "tasa",                  precision: 4,  scale: 2, default: 12.0
+    t.decimal  "balance",               precision: 10, scale: 2
+    t.date     "fecha",                                          default: '2015-07-10'
+    t.string   "comprobante"
+    t.integer  "user_id"
+    t.integer  "client_id"
+    t.integer  "product_id"
+    t.datetime "created_at",                                                            null: false
+    t.datetime "updated_at",                                                            null: false
+  end
+
+  add_index "operations", ["client_id"], name: "index_operations_on_client_id"
+  add_index "operations", ["product_id"], name: "index_operations_on_product_id"
+  add_index "operations", ["user_id"], name: "index_operations_on_user_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "nombre"
@@ -19,7 +59,10 @@ ActiveRecord::Schema.define(version: 20150709045615) do
     t.decimal  "precio"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
+
+  add_index "products", ["user_id"], name: "index_products_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 30, default: "", null: false

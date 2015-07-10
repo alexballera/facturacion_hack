@@ -1,0 +1,73 @@
+<div class="show-center">
+  <h1 class="text-center" style="text-transform: uppercase;"><strong><%= @operation.operacion %> # <%= @operation.id %> </strong></h1>  
+<hr>
+  
+  <div class="table-responsive">
+    <table class="table table-hover">
+    <h2>Datos de la <%= @operation.operacion %></h2>
+      <thead>
+        <th>Tipo de Factura</th>
+        <th>Forma de Pago</th>
+        <th>Fecha</th>
+        <th>Responsable</th>
+      </thead>
+      <tbody>
+        <tr>          
+          <td><%= @operation.factura %></td>
+          <td><%= @operation.pago %></td>
+          <td><%= @operation.fecha %></td>
+          <td><% unless @operation.user.nil? %>
+            <%= @operation.user.username %>
+          <%end%></td>                
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-hover">
+    <h3><%= @operation.client.tipo %></h3>
+      <thead>
+        <th>Nombre y Apellido</th>
+        <th>Cédula/RIF</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @operation.client.full_name %></td>          
+          <td><%= @operation.client.identificacion %></td>
+          <td><%= @operation.client.email %></td>
+          <td><%= @operation.client.telefono %></td>
+          <td><%= @operation.client.direccion %></td>          
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-hover">
+    <h3>Producto</h3>
+      <thead>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Impuestos</th>
+        <th>Subtotal</th>
+        <th>Total</th>
+      </thead>
+      <tbody>
+        <tr>          
+          <td><%= @operation.product.nombre %></td>
+          <td><%= @operation.product.descripcion %></td>
+          <td><%= @operation.product.precio %></td>
+          <td><%= @operation.impuestos %></td>
+          <td><%= @operation.subtotal %></td>
+          <td><%= @operation.total %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <footer>
+    <ul class="nav navbar-nav">
+      <li><%= link_to "Operaciones", "/operations", :class => 'text-green' %> </li>
+      <li><%= link_to  "Editar", edit_operation_path(@operation), :class => 'text-blue' %></li>
+      <li><%= link_to 'Borrar', @operation, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'text-red' %></li>
+    </ul>  
+  </footer>
+</div>

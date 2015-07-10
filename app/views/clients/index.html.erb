@@ -1,0 +1,32 @@
+<div class="show-center">
+	<h1>Clientes</h1>
+	<%= link_to "Crear Nuevo Cliente", new_client_path, :class => 'text-hack font-medium' %>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<th>N°</th>
+				<th>Nombre y Apellido</th>
+				<th>Identificación</th>
+				<th>Email</th>
+				<th>Teléfono</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</thead>
+			<tbody>
+				<% @clients.each_with_index do |client, index| %>
+				<tr>
+					<td><%= index + 1 %></td>
+					<td><%= client.full_name %></td>
+					<td><%= client.identificacion %></td>
+					<td><%= client.email %></td>
+					<td><%= client.telefono %></td>
+					<td><%= link_to  "Detalles", client_path(client), :class => 'text-green'  %></td>
+					<td><%= link_to  "Editar", edit_client_path(client), :class => 'text-blue' %></td>
+					<td><%= link_to "Borrar", client, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'text-red' %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

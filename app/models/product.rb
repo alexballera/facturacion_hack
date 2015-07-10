@@ -1,6 +1,11 @@
 class Product < ActiveRecord::Base
-	validates :nombre, :precio, presence: true
-  validates :nombre, length: { maximum: 30 }
-  validates :descripcion, length: { maximum: 150 }
-  validates :precio, length: { maximum: 10 }
+	belongs_to :user
+	has_many :operations
+	validates :nombre, :precio, :presence => {:message => "No debe estar en blanco"}
+  validates :nombre, length: { maximum: 30,
+    too_long: "%{count} caracteres es el máximo permitido" }
+  validates :descripcion, length: { maximum: 150,
+    too_long: "%{count} caracteres es el máximo permitido" }
+  validates :precio, length: { maximum: 10,
+    too_long: "%{count} caracteres es el máximo permitido" }
 end

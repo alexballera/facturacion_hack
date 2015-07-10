@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  root 'welcome#index' 
 	
   devise_for :users
+  resources :clients 
+  resources :operations
   resources :products
-
-  root 'welcome#index' 
+  # resources :clients do
+  # 	resources :operations
+  # end
 end

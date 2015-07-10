@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  operacion: 1
+  pago: 1
+  factura: 1
+  cantidad: 1
+  subtotal: 9.99
+  impuestos: 9.99
+  total: 9.99
+  tasa: 9.99
+  balance: 9.99
+  fecha: 2015-07-09
+  comprobante: MyString
+  user_id: 
+  client_id: 
+  product_id: 
+
+two:
+  operacion: 1
+  pago: 1
+  factura: 1
+  cantidad: 1
+  subtotal: 9.99
+  impuestos: 9.99
+  total: 9.99
+  tasa: 9.99
+  balance: 9.99
+  fecha: 2015-07-09
+  comprobante: MyString
+  user_id: 
+  client_id: 
+  product_id: 

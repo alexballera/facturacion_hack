@@ -1,11 +1,12 @@
 class ProductsController < ApplicationController
-	
+	before_action :authenticate_user!, except: [:index, :show]
+	before_action :set_product, except: [:index,:new, :create]
+
 	def index
 		@products = Product.all
 	end
 
-	def show
-		@product = Product.find(params[:id])
+	def show		
 	end
 
 	def new
@@ -13,7 +14,7 @@ class ProductsController < ApplicationController
 	end
 
 	def create
-		@product = Product.new(product_params)
+		@product = current_user.products.new(product_params)
 		if @product.save
 			redirect_to @product, :notice => 'El producto fue creado exitosamente'
 		else
@@ -22,11 +23,9 @@ class ProductsController < ApplicationController
 	end
 
 	def edit
-		@product = Product.find(params[:id])
 	end
 
 	def update
-		@product = Product.find(params[:id])
 		if @product.update(product_params)
 			redirect_to @product, :notice => 'El producto fue editado exitosamente'
 		else
@@ -35,12 +34,15 @@ class ProductsController < ApplicationController
 	end
 
 	def destroy
-		@product = Product.find(params[:id])
 		@product.destroy
 		redirect_to products_path, :notice => 'El producto fue borrado exitosamente'
 	end
 
 	private
+
+	def set_product
+		@product = Product.find(params[:id])
+	end
 
 	def product_params
 		params.require(:product).permit(:nombre, :descripcion, :precio)

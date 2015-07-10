@@ -1,0 +1,18 @@
+<% name ||= "Crear" %>
+<h1><%= name %> Operación</h1>
+<% @operation.errors %>
+  <%= semantic_form_for @operation do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :operacion, :as => :select, :collection => Operation.operacions.keys.to_a, label: "Tipo de Operación" %>
+    <%= f.input :client, label: "Escoja un cliente" %>
+    <%= f.input :product, label: "Escoja el (los) Productos" %>
+    <%= f.input :cantidad %>
+    <%= f.input :tasa, label: "Impuesto al Valor Agregado" %>
+    <%= f.input :pago, :as => :select, :collection => Operation.pagos.keys.to_a, label: "Forma de Pago" %>
+    <%= f.input :factura, :as => :select, :collection => Operation.facturas.keys.to_a, label: "Escoja el tipo de factura" %>
+    <%= f.input :fecha %>
+    <%= f.input :comprobante %>
+  <%= f.submit "Guardar", :class => 'text-green be-transparent font-medium' %>
+  <%= link_to "Cancelar", "/operations", :class => 'text-red font-medium' %> 
+  <% end %>
+<% end %>
