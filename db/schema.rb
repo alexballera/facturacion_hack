@@ -58,11 +58,11 @@ ActiveRecord::Schema.define(version: 20150710051636) do
   add_index "operations", ["user_id"], name: "index_operations_on_user_id"
 
   create_table "products", force: :cascade do |t|
-    t.string   "nombre"
-    t.string   "descripcion"
-    t.decimal  "precio"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "nombre",      limit: 30,                          null: false
+    t.string   "descripcion", limit: 150
+    t.decimal  "precio",                  precision: 8, scale: 2, null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.integer  "user_id"
   end
 

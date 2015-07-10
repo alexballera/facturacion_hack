@@ -1,6 +1,8 @@
 class Product < ActiveRecord::Base
 	belongs_to :user
 	has_many :operations
+  validates :cantidad, numericality: { only_integer: true }, length: { maximum: 2,
+    too_long: "%{count} caracteres es el máximo permitido" }
 	validates :nombre, :precio, :presence => {:message => "No debe estar en blanco"}
   validates :nombre, length: { maximum: 30,
     too_long: "%{count} caracteres es el máximo permitido" }

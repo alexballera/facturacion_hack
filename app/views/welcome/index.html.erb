@@ -1,6 +1,11 @@
-<% if user_signed_in? %>
-  <h1><strong>Bienvenido <%= current_user.username %></strong></h1>.
-  <% else %>
-  <h1><strong>Bienvenido</strong></h1>.
-<% end %>
-
+<div class="row"> 
+  <div class="col-xs-12 welcome">
+    
+    <% if user_signed_in? %>
+      <p><strong class="bienvenido">BIENVENIDO </strong></p>
+      <p id="usuario"><strong><%= current_user.username %></strong></p>
+      <% else %>
+      <p><strong class="bienvenido">BIENVENIDO</strong></p>
+    <% end %>  
+  </div> 
+</div>

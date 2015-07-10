@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates :username, length: { maximum: 12,
+  validates :username, :uniqueness => {:message => "Ya este usuario existe, intenta de nuevo"}, length: { maximum: 12,
     too_long: "%{count} caracteres es el máximo permitido" }
   has_many :products
   has_many :clients
