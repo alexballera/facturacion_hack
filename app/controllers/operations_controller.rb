@@ -57,7 +57,7 @@ class OperationsController < ApplicationController
   def destroy
     @operation.destroy
     respond_to do |format|
-      format.html { redirect_to operations_url, :notice => 'El producto fue editado exitosamente' }
+      format.html { redirect_to operations_url, :notice => 'La operación fue borrada exitosamente' }
       format.json { head :no_content }
     end
   end

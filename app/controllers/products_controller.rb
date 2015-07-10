@@ -15,27 +15,38 @@ class ProductsController < ApplicationController
 
 	def create
 		@product = current_user.products.new(product_params)
-		if @product.save
-			redirect_to @product, :notice => 'El producto fue creado exitosamente'
-		else
-			render :new
-		end
+		respond_to do |format|
+      if @product.save
+        format.html { redirect_to @product, :notice => 'El producto fue creado exitosamente' }
+        format.json { render :show, status: :created, location: @product }
+      else
+        format.html { render :new }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
 	end
 
 	def edit
 	end
 
 	def update
-		if @product.update(product_params)
-			redirect_to @product, :notice => 'El producto fue editado exitosamente'
-		else
-			render :edit
-		end
+		respond_to do |format|
+      if @product.update(product_params)
+        format.html { redirect_to @product, :notice => 'El producto fue editado exitosamente' }
+        format.json { render :show, status: :ok, location: @product }
+      else
+        format.html { render :edit }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end		
 	end
 
 	def destroy
 		@product.destroy
-		redirect_to products_path, :notice => 'El producto fue borrado exitosamente'
+    respond_to do |format|
+      format.html { redirect_to products_url, :notice => 'El producto fue borrado exitosamente' }
+      format.json { head :no_content }
+    end
 	end
 
 	private
@@ -45,6 +56,6 @@ class ProductsController < ApplicationController
 	end
 
 	def product_params
-		params.require(:product).permit(:nombre, :descripcion, :precio)
+		params.require(:product).permit(:nombre, :descripcion, :precio, :user_id)
 	end
 end

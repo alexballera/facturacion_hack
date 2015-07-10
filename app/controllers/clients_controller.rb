@@ -15,27 +15,38 @@ class ClientsController < ApplicationController
 
 	def create
 		@client = current_user.clients.new(client_params)
-		if @client.save
-			redirect_to @client, :notice => 'El cliente fue creado exitosamente'
-		else
-			render :new
-		end
+		respond_to do |format|
+			if @client.save
+	        format.html { redirect_to @client, :notice => 'El cliente fue creado exitosamente' }
+	        format.json { render :show, status: :created, location: @client }
+	    else
+	      format.html { render :new }
+	      format.json { render json: @client.errors, status: :unprocessable_entity }
+	    end		
+	  end
 	end
 
 	def edit
 	end
 
 	def update
-		if @client.update(client_params)
-			redirect_to @client, :notice => 'El cliente fue editado exitosamente'
-		else
-			render :edit
-		end
+		respond_to do |format|
+      if @client.update(client_params)
+        format.html { redirect_to @client, :notice => 'El cliente fue editado exitosamente' }
+        format.json { render :show, status: :ok, location: @client }
+      else
+        format.html { render :edit }
+        format.json { render json: @client.errors, status: :unprocessable_entity }
+      end
+    end
 	end
 
 	def destroy
 		@client.destroy
-		redirect_to clients_path, :notice => 'El cliente fue borrado exitosamente'
+    respond_to do |format|
+      format.html { redirect_to clients_url, :notice => 'El cliente fue borrado exitosamente' }
+      format.json { head :no_content }
+    end
 	end
 
 	private
@@ -47,6 +58,6 @@ class ClientsController < ApplicationController
 	def client_params
 		params.require(:client).permit(:nombre, :apellido, 
 			:identificacion, :email, :telefono, :direccion, 
-			:descripcion, :tipo, :frecuencia)
+			:descripcion, :tipo, :frecuencia, :user_id)
 	end
 end
