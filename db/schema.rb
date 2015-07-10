@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709231857) do
+ActiveRecord::Schema.define(version: 20150710051636) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "nombre",         limit: 15
@@ -31,22 +31,26 @@ ActiveRecord::Schema.define(version: 20150709231857) do
   add_index "clients", ["user_id"], name: "index_clients_on_user_id"
 
   create_table "operations", force: :cascade do |t|
-    t.integer  "operacion",                                      default: 0
-    t.integer  "pago",                                           default: 0
-    t.integer  "factura",                                        default: 0
-    t.integer  "cantidad",    limit: 4,                          default: 1,            null: false
-    t.decimal  "subtotal",              precision: 10, scale: 2
-    t.decimal  "impuestos",             precision: 10, scale: 2
-    t.decimal  "total",                 precision: 10, scale: 2
-    t.decimal  "tasa",                  precision: 4,  scale: 2, default: 12.0
-    t.decimal  "balance",               precision: 10, scale: 2
-    t.date     "fecha",                                          default: '2015-07-10'
+    t.integer  "operacion",                                             default: 0
+    t.integer  "pago",                                                  default: 0
+    t.integer  "factura",                                               default: 0
+    t.integer  "cantidad",           limit: 4,                          default: 1,            null: false
+    t.decimal  "subtotal",                     precision: 10, scale: 2
+    t.decimal  "impuestos",                    precision: 10, scale: 2
+    t.decimal  "total",                        precision: 10, scale: 2
+    t.decimal  "tasa",                         precision: 4,  scale: 2, default: 12.0
+    t.decimal  "balance",                      precision: 10, scale: 2
+    t.date     "fecha",                                                 default: '2015-07-10'
     t.string   "comprobante"
     t.integer  "user_id"
     t.integer  "client_id"
     t.integer  "product_id"
-    t.datetime "created_at",                                                            null: false
-    t.datetime "updated_at",                                                            null: false
+    t.datetime "created_at",                                                                   null: false
+    t.datetime "updated_at",                                                                   null: false
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
   end
 
   add_index "operations", ["client_id"], name: "index_operations_on_client_id"

@@ -35,6 +35,10 @@ gem 'formtastic-bootstrap'
 
 gem 'devise'
 
+gem 'jquery-turbolinks'
+
+gem 'paperclip'
+
 
 
 # Use ActiveModel has_secure_password

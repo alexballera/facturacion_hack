@@ -57,7 +57,8 @@ class OperationsController < ApplicationController
   def destroy
     @operation.destroy
     respond_to do |format|
-      format.html { redirect_to operations_url, :notice => 'La operación fue borrada exitosamente' }
+      format.html { redirect_to operations_url, 
+        :notice => 'La operación fue borrada exitosamente' }
       format.json { head :no_content }
     end
   end
@@ -70,6 +71,9 @@ class OperationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def operation_params
-      params.require(:operation).permit(:operacion, :pago, :factura, :cantidad, :subtotal, :impuestos, :total, :tasa, :balance, :fecha, :comprobante, :user_id, :client_id, :product_id)
+      params.require(:operation).permit(:operacion, :pago, 
+        :factura, :cantidad, :subtotal, :impuestos, :total, 
+        :tasa, :balance, :fecha, :comprobante, :user_id, :client_id, 
+        :product_id, :cover)
     end
 end

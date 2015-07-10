@@ -22,6 +22,11 @@
         </tr>
       </tbody>
     </table>
+    <div class="field">
+      <p><strong>Comprobante de Pago</strong></p>
+      <%= image_tag @operation.cover.url(:medium) %>
+    </div>
+
     <table class="table table-hover">
     <h3><%= @operation.client.tipo %></h3>
       <thead>
@@ -33,11 +38,11 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= @operation.client.full_name %></td>          
+          <td><%= @operation.client.full_name %></td>
           <td><%= @operation.client.identificacion %></td>
           <td><%= @operation.client.email %></td>
           <td><%= @operation.client.telefono %></td>
-          <td><%= @operation.client.direccion %></td>          
+          <td><%= @operation.client.direccion %></td>
         </tr>
       </tbody>
     </table>
