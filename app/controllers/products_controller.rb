@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
-	before_action :set_product, except: [:index,:new, :create]
+	before_action :set_product, only: [:show, :edit, :update, :destroy]
 
 	def index
 		@products = Product.all
@@ -13,9 +13,12 @@ class ProductsController < ApplicationController
 		@product = Product.new
 	end
 
-	def create
-		@product = current_user.products.new(product_params)
-		respond_to do |format|
+	def edit
+	end
+  
+  def create
+    @product = current_user.products.new(product_params)
+    respond_to do |format|
       if @product.save
         format.html { redirect_to @product, :notice => 'El producto fue creado exitosamente' }
         format.json { render :show, status: :created, location: @product }
@@ -24,10 +27,8 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
-	end
+  end
 
-	def edit
-	end
 
 	def update
 		respond_to do |format|
@@ -56,6 +57,6 @@ class ProductsController < ApplicationController
 	end
 
 	def product_params
-		params.require(:product).permit(:nombre, :descripcion, :precio, :cantidad, :user_id)
+		params.require(:product).permit(:producto, :descripcion, :precio, :user_id)
 	end
 end

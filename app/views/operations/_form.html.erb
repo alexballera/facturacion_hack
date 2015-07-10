@@ -1,8 +1,7 @@
 <% name ||= "Crear" %>
 <h1><%= name %> Operación</h1>
 <% @operation.errors %>
-  <%= semantic_form_for @operation do |f| %>
-  <%= f.inputs do %>
+  <%= semantic_form_for @operation do |f| %>  
     <%= f.input :operacion, :as => :select, :collection => Operation.operacions.keys.to_a, label: "Tipo de Operación" %>
     <%= f.input :client, label: "Escoja un cliente" %>
     <%= f.input :product, label: "Escoja el producto" %>
@@ -16,5 +15,4 @@
     </div>
   <%= f.submit "Guardar", :class => 'text-green be-transparent font-medium' %>
   <%= link_to "Cancelar", "/operations", :class => 'text-red font-medium' %> 
-  <% end %>
 <% end %>

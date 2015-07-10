@@ -2,7 +2,7 @@
 <h1><%= name %> Producto</h1>
 <% @product.errors %>
 	<%= semantic_form_for @product do |f| %>
-	<%= f.input :nombre, placeholder: "Nombre del producto aquí" %>
+	<%= f.input :producto, placeholder: "Nombre del producto aquí" %>
 	<%= f.input :descripcion, placeholder: "Descripción" %>
 	<%= f.input :precio, placeholder: "Precio" %>
 	<%= f.submit "Guardar", :class => 'text-green be-transparent font-medium' %>

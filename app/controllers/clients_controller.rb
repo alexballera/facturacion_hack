@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
 	before_action :authenticate_user!, except: [:index,:show]
-	before_action :set_client, except: [:index,:new,:create]
+	before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   def index
 		@clients = Client.all
@@ -13,21 +13,22 @@ class ClientsController < ApplicationController
 		@client = Client.new
 	end
 
-	def create
-		@client = current_user.clients.new(client_params)
-		respond_to do |format|
-			if @client.save
-	        format.html { redirect_to @client, :notice => 'El cliente fue creado exitosamente' }
-	        format.json { render :show, status: :created, location: @client }
-	    else
-	      format.html { render :new }
-	      format.json { render json: @client.errors, status: :unprocessable_entity }
-	    end		
-	  end
-	end
-
 	def edit
 	end
+  
+  def create
+    @client = current_user.clients.new(client_params)
+    respond_to do |format|
+      if @client.save
+          format.html { redirect_to @client, :notice => 'El cliente fue creado exitosamente' }
+          format.json { render :show, status: :created, location: @client }
+      else
+        format.html { render :new }
+        format.json { render json: @client.errors, status: :unprocessable_entity }
+      end   
+    end
+  end
+
 
 	def update
 		respond_to do |format|
