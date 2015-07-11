@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710051636) do
+ActiveRecord::Schema.define(version: 20150711023040) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "nombre",         limit: 15
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 20150710051636) do
   end
 
   add_index "clients", ["user_id"], name: "index_clients_on_user_id"
+
+  create_table "has_products", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "operation_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "has_products", ["operation_id"], name: "index_has_products_on_operation_id"
+  add_index "has_products", ["product_id"], name: "index_has_products_on_product_id"
 
   create_table "operations", force: :cascade do |t|
     t.integer  "operacion",                                             default: 0
@@ -51,6 +61,7 @@ ActiveRecord::Schema.define(version: 20150710051636) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
+    t.string   "state",                                                 default: "in_draft"
   end
 
   add_index "operations", ["client_id"], name: "index_operations_on_client_id"
@@ -80,9 +91,9 @@ ActiveRecord::Schema.define(version: 20150710051636) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "username",               limit: 12
-    t.string   "seguridad"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
+    t.integer  "permission_level",                  default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

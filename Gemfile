@@ -39,6 +39,8 @@ gem 'jquery-turbolinks'
 
 gem 'paperclip'
 
+gem 'aasm'
+
 
 
 # Use ActiveModel has_secure_password
