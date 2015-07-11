@@ -16,6 +16,12 @@ class Client < ActiveRecord::Base
   enum tipo: [ :Cliente, :Sponsor, :Proveedor ]
 	enum frecuencia: [ :Recurrente, :Puntual ]
 
+  scope :clientes, ->{ where(tipo: "Cliente") }
+  scope :sponsor, ->{ where(tipo: "Sponsor") }
+  scope :proveedores, ->{ where(tipo: "Proveedor") }
+  scope :recurrentes, ->{ where(frecuencia: "Recurrente") }
+  scope :puntuales, ->{ where(tipo: "Puntual") }
+
   def full_name    
     [nombre, apellido].join(' ')    
   end 

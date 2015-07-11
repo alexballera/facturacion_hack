@@ -16,18 +16,18 @@ class Operation < ActiveRecord::Base
   validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
 
   scope :borrador, ->{ where(state: "in_draft") }
-  scope :impresa, ->{ where(state: "printed") }
-  scope :compra, ->{ where(operacion: "Compra") }
-  scope :venta, ->{ where(operacion: "Venta") }
+  scope :impresas, ->{ where(state: "printed") }
+  scope :compras, ->{ where(operacion: "Compra") }
+  scope :ventas, ->{ where(operacion: "Venta") }
   scope :contado, ->{ where(operacion: "Contado") }
   scope :credito, ->{ where(operacion: "Credito") }
 
   aasm column: "state" do
-    state :in_draft, initial: true
-    state :printed
+    state :In_draft, initial: true
+    state :Printed
 
     event :print do 
-      transitions from: :in_draft, to: :printed
+      transitions from: :In_draft, to: :Printed
     end
 
   end

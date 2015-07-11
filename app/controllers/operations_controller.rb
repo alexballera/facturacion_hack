@@ -64,17 +64,57 @@ class OperationsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_operation
-      @operation = Operation.find(params[:id])
-    end
+  def ventas 
+    @ventas = Operation.ventas
+  end  
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def operation_params
-      params.require(:operation).permit(:operacion, :pago, 
-        :cantidad, :subtotal, :impuestos, :total, 
-        :tasa, :balance, :fecha, :comprobante, :user_id, :client_id, 
-        :product_id, :cover)
-    end
+  def ventas_borrador
+    @ventas = Operation.ventas.borrador
+  end  
+
+  def ventas_factura
+    @ventas = Operation.ventas.impresas
+  end
+
+  def ventas_contado 
+    @ventas = Operation.ventas.contado
+  end
+
+  def ventas_credito 
+    @compras = Operation.compras.credito
+  end
+
+  def compras 
+    @compras = Operation.compras
+  end  
+
+  def compras_borrador
+    @compras = Operation.compras.borrador
+  end  
+
+  def compras_factura
+    @compras = Operation.compras.impresas
+  end
+
+  def compras_contado 
+    @compras = Operation.compras.contado
+  end
+
+  def compras_credito 
+    @compras = Operation.compras.credito
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_operation
+    @operation = Operation.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def operation_params
+    params.require(:operation).permit(:operacion, :pago, 
+      :cantidad, :subtotal, :impuestos, :total, 
+      :tasa, :balance, :fecha, :comprobante, :user_id, :client_id, 
+      :product_id, :cover)
+  end
 end

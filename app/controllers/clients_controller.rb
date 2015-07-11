@@ -51,6 +51,42 @@ class ClientsController < ApplicationController
     end
 	end
 
+  def clientes 
+    @clientes = Client.clientes
+  end
+
+  def clientes_recurrentes
+    @clientes = Client.clientes.recurrentes
+  end
+
+  def clientes_puntuales
+    @clientes = Client.clientes.puntuales
+  end
+
+  def sponsor 
+    @sponsor = Client.sponsor
+  end
+
+  def sponsor_recurrentes
+    @sponsor = Client.sponsor.recurrentes
+  end
+
+  def sponsor_puntuales
+    @sponsor = Client.sponsor.puntuales
+  end
+
+  def proveedores 
+    @proveedores = Client.proveedores
+  end
+
+  def proveedores_recurrentes
+    @proveedores = Client.proveedores.recurrentes
+  end
+
+  def proveedores_puntuales
+    @proveedores = Client.proveedores.puntuales
+  end
+
 	private
 
 	def set_client
