@@ -73,7 +73,7 @@ class OperationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def operation_params
       params.require(:operation).permit(:operacion, :pago, 
-        :factura, :cantidad, :subtotal, :impuestos, :total, 
+        :cantidad, :subtotal, :impuestos, :total, 
         :tasa, :balance, :fecha, :comprobante, :user_id, :client_id, 
         :product_id, :cover)
     end

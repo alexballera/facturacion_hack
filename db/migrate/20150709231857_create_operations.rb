@@ -3,7 +3,6 @@ class CreateOperations < ActiveRecord::Migration
     create_table :operations do |t|
       t.integer :operacion, default: 0
       t.integer :pago, default: 0
-      t.integer :factura, default: 0
       t.integer :cantidad, limit: 4, null: false, default: 1
       t.decimal :subtotal, precision: 10, scale: 2
       t.decimal :impuestos, precision: 10, scale: 2

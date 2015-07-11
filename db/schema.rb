@@ -30,16 +30,6 @@ ActiveRecord::Schema.define(version: 20150711023040) do
 
   add_index "clients", ["user_id"], name: "index_clients_on_user_id"
 
-  create_table "has_products", force: :cascade do |t|
-    t.integer  "product_id"
-    t.integer  "operation_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "has_products", ["operation_id"], name: "index_has_products_on_operation_id"
-  add_index "has_products", ["product_id"], name: "index_has_products_on_product_id"
-
   create_table "operations", force: :cascade do |t|
     t.integer  "operacion",                                             default: 0
     t.integer  "pago",                                                  default: 0
@@ -50,7 +40,7 @@ ActiveRecord::Schema.define(version: 20150711023040) do
     t.decimal  "total",                        precision: 10, scale: 2
     t.decimal  "tasa",                         precision: 4,  scale: 2, default: 12.0
     t.decimal  "balance",                      precision: 10, scale: 2
-    t.date     "fecha",                                                 default: '2015-07-10'
+    t.date     "fecha",                                                 default: '2015-07-11'
     t.string   "comprobante"
     t.integer  "user_id"
     t.integer  "client_id"

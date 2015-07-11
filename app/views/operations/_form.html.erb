@@ -8,7 +8,6 @@
     <%= f.input :cantidad %>
     <%= f.input :tasa, label: "Impuesto al Valor Agregado" %>
     <%= f.input :pago, :as => :select, :collection => Operation.pagos.keys.to_a, label: "Forma de Pago" %>
-    <%= f.input :factura, :as => :select, :collection => Operation.facturas.keys.to_a, label: "Escoja el tipo de factura" %>
     <%= f.input :fecha %>    
     <div class="field" style="font-weight: bold;">
       Comprobante (imagen): <%= f.file_field :cover %>
