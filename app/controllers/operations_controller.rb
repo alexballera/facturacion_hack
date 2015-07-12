@@ -7,7 +7,7 @@ class OperationsController < ApplicationController
   # GET /operations
   # GET /operations.json
   def index
-    @operations = Operation.all
+    @operations = Operation.paginate(page: params[:page],per_page:3).ultimos    
   end
 
   # GET /operations/1
@@ -93,7 +93,7 @@ class OperationsController < ApplicationController
   def cancel 
     respond_to do |format|
       if @operation.cancel!
-        format.html { redirect_to @operation, :notice => 'La factura fue cancelada exitosamente' }
+        format.html { redirect_to @operation, :notice => 'La factura fue anulada exitosamente' }
         format.json { render :show, status: :ok, location: @operation }
       else
         format.html { render :edit }
@@ -104,61 +104,61 @@ class OperationsController < ApplicationController
 
   #FACTURAS:
   def borrador 
-    @borrador = Operation.borrador
+    @operations = Operation.borrador
   end 
 
   def impresas 
-    @impresas = Operation.impresas
+    @operations = Operation.impresas
   end
 
   def canceladas 
-    @impresas = Operation.canceladas
+    @operations = Operation.canceladas
   end
 
   def pagadas 
-    @impresas = Operation.pagadas
+    @operations = Operation.pagadas
   end 
 
   #VENTAS
   def ventas 
-    @ventas = Operation.ventas
+    @operations = Operation.ventas
   end  
 
   def ventas_borrador
-    @ventas = Operation.ventas.borrador
+    @operations = Operation.ventas.borrador
   end  
 
   def ventas_impresas
-    @ventas = Operation.ventas.impresas
+    @operations = Operation.ventas.impresas
   end
 
   def ventas_contado 
-    @ventas = Operation.ventas.contado
+    @operations = Operation.ventas.contado
   end
 
   def ventas_credito 
-    @compras = Operation.compras.credito
+    @operations = Operation.compras.credito
   end
 
   #COMPRAS
   def compras 
-    @compras = Operation.compras
+    @operations = Operation.compras
   end  
 
   def compras_borrador
-    @compras = Operation.compras.borrador
+    @operations = Operation.compras.borrador
   end  
 
   def compras_impresas
-    @compras = Operation.compras.impresas
+    @operations = Operation.compras.impresas
   end
 
   def compras_contado 
-    @compras = Operation.compras.contado
+    @operations = Operation.compras.contado
   end
 
   def compras_credito 
-    @compras = Operation.compras.credito
+    @operations = Operation.compras.credito
   end
 
   private
@@ -172,6 +172,6 @@ class OperationsController < ApplicationController
     params.require(:operation).permit(:operacion, :pago, 
       :cantidad, :subtotal, :impuestos, :total, 
       :tasa, :balance, :fecha, :comprobante, :user_id, :client_id, 
-      :product_id, :cover, :state)
+      :product_id, :cover)
   end
 end

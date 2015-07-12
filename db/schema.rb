@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20150711023040) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
-    t.string   "state",                                                 default: "in_draft"
+    t.string   "state",                                                 default: "Borrador"
   end
 
   add_index "operations", ["client_id"], name: "index_operations_on_client_id"

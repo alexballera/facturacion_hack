@@ -1,5 +1,5 @@
 class AddColumnStateToOperations < ActiveRecord::Migration
   def change
-    add_column :operations, :state, :string, default: "in_draft"
+    add_column :operations, :state, :string, default: "Borrador"
   end
 end

@@ -1,0 +1,23 @@
+<footer>
+  <ul class="nav nav-pills nav-justified">
+    <li class="boton-footer active", role="presentation", style="a:hover:green"><%= link_to "Retornar", "/operations" %> </li>
+    <li class="boton-footer", role="presentation", style="hover:green"><%= link_to  "Editar", edit_operation_path(@operation) %></li>
+    <li class="boton-footer", role="presentation", style="hover:green"><%= link_to 'Eliminar', @operation, method: :delete, data: { confirm: '¿Estás seguro de eliminar esta factura?' } %></li>
+    
+    <li class="boton-footer", role="presentation", style="hover:green">
+      <% if @operation.may_pay? %>
+      <%= link_to "Pagar", "/operations/#{@operation.id}/pay", method: :put, data: { confirm: '¿Estás seguro de pagar esta factura?' } %>
+      <%end%>
+    </li>
+    <li class="boton-footer", role="presentation", style="hover:green">
+      <% if @operation.may_cancel? %>
+      <%= link_to "Anular", "/operations/#{@operation.id}/cancel", method: :put, data: { confirm: '¿Estás seguro de anular esta factura?' } %>
+      <%end%>
+    </li>
+    <li class="boton-footer", role="presentation", style="hover:green">
+      <% if @operation.may_print? %>
+      <%= link_to "Emitir", "/operations/#{@operation.id}/print", method: :put, data: { confirm: '¿Estás seguro de emitir esta factura?' } %>
+      <%end%>
+    </li>
+  </ul>
+</footer>

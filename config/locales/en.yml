@@ -21,3 +21,41 @@
 
 en:
   hello: "Hello world"
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "Siguiente &#8594;"
+    page_gap: "&hellip;"
+    will_paginate:
+    page_entries_info:
+      single_page:
+        zero:  "%{model}, no encontrado!"
+        one:   "1 %{model}"
+        other: "all %{count} %{model}"
+      single_page_html:
+        zero:  "%{model}, no encontrado!"
+        one:   "<b>1</b> %{model}"
+        other: "<b>all&nbsp;%{count}</b> %{model}"
+
+      multi_page: "%{model} %{from} - %{to} de %{count}"
+      multi_page_html: "<b> Items %{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b>"
+
+
+  breadcrumbs:
+    application:
+      root: "indice"
+    pages:
+      pages: "paginas"
+  helpers:
+    actions: "acciones"
+    links:
+      back: "atras"
+      cancel: "cancelar"
+      confirm: "¿astas seguro?"
+      destroy: "borrar"
+      new: "nuevo"
+      edit: "editar"
+    titles:
+      edit: "editar %{model}"
+      save: "guardar %{model}"
+      new: "nuevo %{model}"
+      delete: "borrar %{model}"

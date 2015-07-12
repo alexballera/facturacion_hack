@@ -11,35 +11,36 @@ class Operation < ActiveRecord::Base
   validates :pago, inclusion: { in: :pago }
   enum operacion: [ :Compra, :Venta ]
   enum pago: [ :Contado, :Credito ]
-
+  
   has_attached_file :cover, styles: { medium: "300x300>", thumb: "100x100>"}, :default_url => "missing.png"
   validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
 
-  scope :borrador, ->{ where(state: "in_draft") }
-  scope :impresas, ->{ where(state: "printed") }
-  scope :pagadas, ->{ where(state: "paid") }
-  scope :canceladas, ->{ where(state: "canceled") }
+  scope :ultimos, ->{ order(created_at: :asc) }
+  scope :borrador, ->{ where(state: "Borrador") }
+  scope :impresas, ->{ where(state: "Emitida") }
+  scope :pagadas, ->{ where(state: "Pagada") }
+  scope :canceladas, ->{ where(state: "Anulada") }
   scope :compras, ->{ where(operacion: "Compra") }
   scope :ventas, ->{ where(operacion: "Venta") }
   scope :contado, ->{ where(operacion: "Contado") }
   scope :credito, ->{ where(operacion: "Credito") }
 
   aasm column: "state" do
-    state :in_draft, initial: true
-    state :printed
-    state :paid
-    state :canceled
+    state :Borrador, initial: true
+    state :Emitida
+    state :Pagada
+    state :Anulada
 
     event :print do 
-      transitions from: :in_draft, to: :printed
+      transitions from: :Borrador, to: :Emitida
     end
 
     event :pay do 
-      transitions from: [:in_draft, :printed], to: :paid
+      transitions from: [:Borrador, :Emitida], to: :Pagada
     end
 
     event :cancel do 
-      transitions from: [:in_draft, :printed], to: :canceled
+      transitions from: [:Borrador, :Emitida], to: :Anulada
     end
-  end
+  end  
 end

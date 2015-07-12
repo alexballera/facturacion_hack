@@ -67,17 +67,12 @@ body{
 	color: red !important;
 }
 
-a:link{
-	text-decoration: none;
-}
-
 a:hover{
 	text-decoration: none !important;
+	color: red !important;
 }
 
-a:visited{
-	color: inherit;
-}
+
 
 .form-center{
 	width: 60% !important;
@@ -109,4 +104,19 @@ a:visited{
 	margin-top: 1em;
 	margin-bottom: 1em;
 	letter-spacing: 2px;
+}
+
+.boton-footer{
+	margin-left: 0 !important;
+	margin-right: 10px;
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+.boton-footer> a:hover{
+	background-color: #33FFFF !important;
+}
+
+.link-index> a:link{
+	color: #0990CC !important;
 }

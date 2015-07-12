@@ -1,36 +1,12 @@
-<div class="show-center">
+<div class="form-center">
   <h1>Operaciones</h1>
   <%= link_to "Crear Nueva Operación", new_operation_path, :class => 'text-hack font-medium' %>
-  <div class="table-responsive">
-    <table class="table table-hover">
-      <thead>
-        <th>N°</th>
-        <th>Operación</th>
-        <th>Pago</th>
-        <th>Producto</th>
-        <th>Monto</th>
-        <th>Cliente</th>
-        <th>Nombre y Apellido</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </thead>
-      <tbody>
-        <% @operations.each_with_index do |operation, index| %>
-        <tr>
-          <td><%= index + 1 %></td>
-          <td><%= operation.operacion %></td>
-          <td><%= operation.pago %></td>
-          <td><%= operation.product.producto %></td>
-          <td><%= operation.total %></td>
-          <td><%= operation.client.tipo %></td>
-          <td><%= operation.client.full_name %></td>
-          <td><%= link_to  "Detalles", operation_path(operation), :class => 'text-green'  %></td>
-          <td><%= link_to  "Editar", edit_operation_path(operation), :class => 'text-blue' %></td>
-          <td><%= link_to "Borrar", operation, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'text-red' %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+  <%= render "transactions" %>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @operations %>
+      <br><br>
+    </div>
+    <%= will_paginate @operations, :container => false %>
+  </div>  
 </div>

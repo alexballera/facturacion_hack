@@ -1,18 +1,19 @@
 <div class="show-center">
   <h1 class="text-center" style="text-transform: uppercase;"><strong><%= @operation.operacion %> # <%= @operation.id %> </strong></h1>  
-<hr>
-  
+<hr>  
   <div class="table-responsive">
     <table class="table table-hover">
     <h2>Datos de la <%= @operation.operacion %></h2>
       <thead>
         <th>Forma de Pago</th>
+        <th>Estado</th>
         <th>Fecha</th>
-        <th>Responsable</th>
+        <th>Creada por</th>
       </thead>
       <tbody>
         <tr>          
           <td><%= @operation.pago %></td>
+          <td><%= @operation.state %></td>
           <td><%= @operation.fecha %></td>
           <td><% unless @operation.user.nil? %>
             <%= @operation.user.username %>
@@ -21,14 +22,14 @@
       </tbody>
     </table>
     <div class="field">
-      <p><strong>Comprobante de Pago</strong></p>
-      
+      <p><strong>Comprobante de Pago</strong></p>      
         <%= image_tag @operation.cover.url(:medium) %>
     </div>
 
     <table class="table table-hover">
-    <h3><%= @operation.client.tipo %></h3>
-      <thead>
+    <h3><%= @operation.client.tipo %></h3> 
+        <thead>
+        <th></th>
         <th>Nombre y Apellido</th>
         <th>Cédula/RIF</th>
         <th>Email</th>
@@ -37,13 +38,16 @@
       </thead>
       <tbody>
         <tr>
+          <td><div class=>
+        <%= image_tag @operation.client.gravatar_url %>
+      </div></td>
           <td><%= @operation.client.full_name %></td>
           <td><%= @operation.client.identificacion %></td>
           <td><%= @operation.client.email %></td>
           <td><%= @operation.client.telefono %></td>
           <td><%= @operation.client.direccion %></td>
         </tr>
-      </tbody>
+      </tbody> 
     </table>
     <table class="table table-hover">
     <h3>Producto</h3>
@@ -67,26 +71,9 @@
       </tbody>
     </table>
   </div>
-  <footer>
-    <ul class="nav navbar-nav text-hack">
-      <li><%= link_to "Operaciones", "/operations", :class => 'text-green' %> </li>
-      <li><%= link_to  "Editar", edit_operation_path(@operation) %></li>
-      <li>
-        <% if @operation.may_print? %>    
-        <%= link_to "Emitir", "/operations/#{@operation.id}/print", method: :put %>
-        <%end%>        
-      </li>
-      <li>
-        <% if @operation.may_pay? %>    
-        <%= link_to "Pagar", "/operations/#{@operation.id}/pay", method: :put %>
-        <%end%>        
-      </li>
-      <li>
-        <% if @operation.may_cancel? %>    
-        <%= link_to "Cancelar", "/operations/#{@operation.id}/cancel", method: :put %>
-        <%end%>        
-      </li>
-      <li><%= link_to 'Borrar', @operation, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'text-red' %></li>
-    </ul>  
-  </footer>
+  <hr>
+  <%= render "footer" %> 
 </div>
+<br>
+<br>
+<br>
