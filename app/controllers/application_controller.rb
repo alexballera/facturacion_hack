@@ -7,8 +7,12 @@ class ApplicationController < ActionController::Base
   protected  
 
 	def authenticate_admin!
-		redirect_to_root_path unless user_signed_in? && current_user.is_admin?
+		redirect_to root_path, alert: "Lo siento! No estás autorizado para realizar esta acción" unless user_signed_in? && current_user.is_admin?
 	end	
+
+  def authenticate_asistente!
+    redirect_to root_path, alert: "Lo siento! No estás autorizado para realizar esta acción" unless user_signed_in? && current_user.is_asistente?
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password) }

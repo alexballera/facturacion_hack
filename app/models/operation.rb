@@ -17,19 +17,29 @@ class Operation < ActiveRecord::Base
 
   scope :borrador, ->{ where(state: "in_draft") }
   scope :impresas, ->{ where(state: "printed") }
+  scope :pagadas, ->{ where(state: "paid") }
+  scope :canceladas, ->{ where(state: "canceled") }
   scope :compras, ->{ where(operacion: "Compra") }
   scope :ventas, ->{ where(operacion: "Venta") }
   scope :contado, ->{ where(operacion: "Contado") }
   scope :credito, ->{ where(operacion: "Credito") }
 
   aasm column: "state" do
-    state :In_draft, initial: true
-    state :Printed
+    state :in_draft, initial: true
+    state :printed
+    state :paid
+    state :canceled
 
     event :print do 
-      transitions from: :In_draft, to: :Printed
+      transitions from: :in_draft, to: :printed
     end
 
-  end
+    event :pay do 
+      transitions from: [:in_draft, :printed], to: :paid
+    end
 
+    event :cancel do 
+      transitions from: [:in_draft, :printed], to: :canceled
+    end
+  end
 end

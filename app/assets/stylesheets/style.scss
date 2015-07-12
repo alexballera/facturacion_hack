@@ -13,6 +13,11 @@ body{
 	background-image: url(fondo.jpg);
 }
 
+.navbar-header, .navbar-brand {
+	padding-top: 0 !important;
+	margin-top: 0 !important;
+}
+
 #nav-left{
 	padding-left: 3em !important;
 }
@@ -21,16 +26,18 @@ body{
 	padding-right: 3em !important;
 }
 
-#logo{
-	font-size: 1.8em;
-}
-
 .font-medium{
 	font-size: 1.2em;
 }
 
 .be-blue{
 	background-color: #0990CC !important;	
+	padding: 10px;
+	border: none !important;
+}
+
+.be-green{
+	background-color: #229F0B !important;	
 	padding: 10px;
 	border: none !important;
 }

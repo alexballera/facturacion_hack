@@ -68,9 +68,24 @@
     </table>
   </div>
   <footer>
-    <ul class="nav navbar-nav">
+    <ul class="nav navbar-nav text-hack">
       <li><%= link_to "Operaciones", "/operations", :class => 'text-green' %> </li>
-      <li><%= link_to  "Editar", edit_operation_path(@operation), :class => 'text-blue' %></li>
+      <li><%= link_to  "Editar", edit_operation_path(@operation) %></li>
+      <li>
+        <% if @operation.may_print? %>    
+        <%= link_to "Emitir", "/operations/#{@operation.id}/print", method: :put %>
+        <%end%>        
+      </li>
+      <li>
+        <% if @operation.may_pay? %>    
+        <%= link_to "Pagar", "/operations/#{@operation.id}/pay", method: :put %>
+        <%end%>        
+      </li>
+      <li>
+        <% if @operation.may_cancel? %>    
+        <%= link_to "Cancelar", "/operations/#{@operation.id}/cancel", method: :put %>
+        <%end%>        
+      </li>
       <li><%= link_to 'Borrar', @operation, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'text-red' %></li>
     </ul>  
   </footer>

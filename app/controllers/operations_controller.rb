@@ -1,7 +1,8 @@
 class OperationsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_operation, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_operation, only: [:show, :edit, :update, :destroy, :print, :cancel, :pay]
+  before_action :authenticate_asistente!, only: [:edit, :update, :new, :pay, :print]
+  before_action :authenticate_admin!, only: [:destroy, :cancel]
 
   # GET /operations
   # GET /operations.json
@@ -59,11 +60,66 @@ class OperationsController < ApplicationController
     @operation.destroy
     respond_to do |format|
       format.html { redirect_to operations_url, 
-        :notice => 'La operación fue borrada exitosamente' }
+        :alert => 'La operación fue borrada exitosamente' }
       format.json { head :no_content }
     end
   end
 
+  #PUT /operations/:id/print
+  def print 
+    respond_to do |format|
+      if @operation.print!
+        format.html { redirect_to @operation, :notice => 'La factura fue emitida exitosamente' }
+        format.json { render :show, status: :ok, location: @operation }
+      else
+        format.html { render :edit }
+        format.json { render json: @operation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def pay  
+    respond_to do |format|
+      if @operation.pay!
+        format.html { redirect_to @operation, :notice => 'La factura fue pagada exitosamente' }
+        format.json { render :show, status: :ok, location: @operation }
+      else
+        format.html { render :edit }
+        format.json { render json: @operation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def cancel 
+    respond_to do |format|
+      if @operation.cancel!
+        format.html { redirect_to @operation, :notice => 'La factura fue cancelada exitosamente' }
+        format.json { render :show, status: :ok, location: @operation }
+      else
+        format.html { render :edit }
+        format.json { render json: @operation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  #FACTURAS:
+  def borrador 
+    @borrador = Operation.borrador
+  end 
+
+  def impresas 
+    @impresas = Operation.impresas
+  end
+
+  def canceladas 
+    @impresas = Operation.canceladas
+  end
+
+  def pagadas 
+    @impresas = Operation.pagadas
+  end 
+
+  #VENTAS
   def ventas 
     @ventas = Operation.ventas
   end  
@@ -72,7 +128,7 @@ class OperationsController < ApplicationController
     @ventas = Operation.ventas.borrador
   end  
 
-  def ventas_factura
+  def ventas_impresas
     @ventas = Operation.ventas.impresas
   end
 
@@ -84,6 +140,7 @@ class OperationsController < ApplicationController
     @compras = Operation.compras.credito
   end
 
+  #COMPRAS
   def compras 
     @compras = Operation.compras
   end  
@@ -92,7 +149,7 @@ class OperationsController < ApplicationController
     @compras = Operation.compras.borrador
   end  
 
-  def compras_factura
+  def compras_impresas
     @compras = Operation.compras.impresas
   end
 
@@ -115,6 +172,6 @@ class OperationsController < ApplicationController
     params.require(:operation).permit(:operacion, :pago, 
       :cantidad, :subtotal, :impuestos, :total, 
       :tasa, :balance, :fecha, :comprobante, :user_id, :client_id, 
-      :product_id, :cover)
+      :product_id, :cover, :state)
   end
 end

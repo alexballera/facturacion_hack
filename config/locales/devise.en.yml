@@ -3,14 +3,14 @@
 en:
   devise:
     confirmations:
-      confirmed: "Su correo electrónico se confirmó exitosamente."
+      confirmed: "Tu correo electrónico se confirmó exitosamente."
       send_instructions: "En pocos minutos recibirás un correo electrónico con instrucciones sobre cómo confirmar tu dirección de correo electrónico."
       send_paranoid_instructions: "En caso de que tengamos registrado tu dirección email, en pocos minutos recibirás un email con instrucciones sobre cómo confirmar tu dirección email."
     failure:
       already_authenticated: "Tu cuenta ya está iniciada."
       inactive: "Tu cuenta aún no ha sido activada."
       invalid: "Contraseña o %{authentication_keys} inválida."
-      locked: "Su cuenta está asegurada."
+      locked: "Tu cuenta está asegurada."
       last_attempt: "You have one more attempt before your account is locked."
       not_found_in_database: "Contraseña o %{authentication_keys} inválida."
       timeout: "Tu sesión expiró. Por favor, inicie sesión nuevamente para continuar."
@@ -41,9 +41,9 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
       updated: "Tu cuenta ha sido editada exitosamnte."
     sessions:
-      signed_in: "Ingresó a su cuenta exitosamente."
-      signed_out: "Salió exitosamente."
-      already_signed_out: "Salió exitosamente."
+      signed_in: "Ingresaste a tu cuenta exitosamente."
+      signed_out: "Saliste exitosamente."
+      already_signed_out: "Saliste exitosamente."
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
@@ -56,5 +56,5 @@ en:
       not_found: "no encontado"
       not_locked: "was not locked"
       not_saved:
-        one: "1 error prohibited this %{resource} from being saved:"
-        other: "%{count} errors prohibited this %{resource} from being saved:"
+        one: "1 error impide este %{resource} para poder guardar:"
+        other: "%{count} errores impiden este %{resource} para poder guardar:"

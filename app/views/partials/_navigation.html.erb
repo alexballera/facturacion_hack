@@ -8,23 +8,25 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
-		      </button>
-		        <%= link_to "Hack", root_path, :class => 'text-white navbar-brand', id:"logo" %>		
+		      </button>		        
+		        <%= link_to image_tag("logo.png", height: '50', width: '50'), root_path, :class => 'navbar-brand' %>		
 		    </div>
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">		    
+						<% if user_signed_in? %>
 		      <ul class="nav navbar-nav">
 						<li><%= link_to "Facturas", operations_path, :class => 'text-white font-medium' %></li>
 						<li><%= link_to "Clientes", clients_path, :class => 'text-white font-medium' %></li>
 						<li><%= link_to "Proveedores", clients_path, :class => 'text-white font-medium' %></li>
 						<li><%= link_to "Productos", products_path, :class => 'text-white font-medium' %></li>
 		      </ul>
-		      <ul class="nav navbar-nav navbar-right">						
-						<% if user_signed_in? %>
+		      <ul class="nav navbar-nav navbar-rigth">		      						
 						<li>
 							<%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, :class => 'text-white font-medium' %>
 						</li>
+					</ul>
 						<%else%>
+					<ul class="nav navbar-nav">
 						<li>
 							<%= link_to "Iniciar sesión", new_user_session_path, :class => 'text-white font-medium' %>
 						</li>
