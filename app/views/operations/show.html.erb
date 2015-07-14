@@ -1,5 +1,15 @@
 <div class="show-center">
-  <h1 class="text-center" style="text-transform: uppercase;"><strong><%= @operation.operacion %> # <%= @operation.id %> </strong></h1>  
+  <h1 class="text-center" style="text-transform: uppercase;">
+ 
+  <%case @operation.state
+    when "Borrador"%>
+    <strong>Comprobante de <%= @operation.operacion %> # <%= @operation.id %> </strong></h1>   
+  <%when "Emitida" || "Pagada" %>
+    <strong>Factura de <%= @operation.operacion %> # <%= @operation.id %> </strong></h1> 
+  <%when ("Emitida" || "Pagada" || "Borrador") && "Anulada" %>
+  <strong><%= @operation.operacion %> # <%= @operation.id %> Anulada</strong></h1> 
+  <%end%>
+    
 <hr>  
   <div class="table-responsive"> 
     <table class="table table-hover">
