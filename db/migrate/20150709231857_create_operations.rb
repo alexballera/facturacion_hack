@@ -1,8 +1,8 @@
 class CreateOperations < ActiveRecord::Migration
   def change
     create_table :operations do |t|
-      t.integer :operacion, default: 0
-      t.integer :pago, default: 0
+      t.integer :operacion, default: 1
+      t.integer :pago, default: 1
       t.integer :cantidad, limit: 4, null: false, default: 1
       t.decimal :subtotal, precision: 10, scale: 2
       t.decimal :impuestos, precision: 10, scale: 2

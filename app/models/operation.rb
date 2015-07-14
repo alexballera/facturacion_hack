@@ -5,7 +5,7 @@ class Operation < ActiveRecord::Base
   belongs_to :client
   belongs_to :product
 
-  validates :cantidad, :fecha, :presence => {:message => "No debe estar en blanco"}
+  validates :cantidad, :fecha, :client_id, :product_id, :presence => {:message => "No debe estar en blanco"}
   validates :cantidad, numericality: { only_integer: true }
   validates :operacion, inclusion: { in: :operacion }
   validates :pago, inclusion: { in: :pago }

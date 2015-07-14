@@ -31,16 +31,15 @@ ActiveRecord::Schema.define(version: 20150711023040) do
   add_index "clients", ["user_id"], name: "index_clients_on_user_id"
 
   create_table "operations", force: :cascade do |t|
-    t.integer  "operacion",                                             default: 0
-    t.integer  "pago",                                                  default: 0
-    t.integer  "factura",                                               default: 0
+    t.integer  "operacion",                                             default: 1
+    t.integer  "pago",                                                  default: 1
     t.integer  "cantidad",           limit: 4,                          default: 1,            null: false
     t.decimal  "subtotal",                     precision: 10, scale: 2
     t.decimal  "impuestos",                    precision: 10, scale: 2
     t.decimal  "total",                        precision: 10, scale: 2
     t.decimal  "tasa",                         precision: 4,  scale: 2, default: 12.0
     t.decimal  "balance",                      precision: 10, scale: 2
-    t.date     "fecha",                                                 default: '2015-07-11'
+    t.date     "fecha",                                                 default: '2015-07-14'
     t.string   "comprobante"
     t.integer  "user_id"
     t.integer  "client_id"

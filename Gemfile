@@ -45,7 +45,7 @@ gem 'will_paginate'
 
 gem 'gravtastic'
 
-
+gem 'dotenv-rails'
 
 
 # Use ActiveModel has_secure_password
