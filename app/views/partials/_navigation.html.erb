@@ -16,13 +16,12 @@
 						<% if user_signed_in? %>
 		      <ul class="nav navbar-nav">
 						<li><%= link_to "Facturas", operations_path, :class => 'text-white font-medium' %></li>
-						<li><%= link_to "Clientes", clients_path, :class => 'text-white font-medium' %></li>
-						<li><%= link_to "Proveedores", clients_path, :class => 'text-white font-medium' %></li>
+						<li><%= link_to "Asociados", clients_path, :class => 'text-white font-medium' %></li>						
 						<li><%= link_to "Productos", products_path, :class => 'text-white font-medium' %></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-rigth">		      						
 						<li>
-							<%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, :class => 'text-white font-medium' %>
+							<%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, :class => 'text-white font-medium', data: { confirm: '¿Estás seguro salir?' } %>
 						</li>
 					</ul>
 						<%else%>

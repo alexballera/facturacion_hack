@@ -1,0 +1,24 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <th>Avatar</th>
+      <th>Nombre y Apellido</th>
+      <th>Identificación</th>
+      <th>Email</th>
+      <th>Teléfono</th>
+    </thead>
+    <tbody>
+      <% @clients.each do |client| %>
+      <tr>    
+        <td><div>
+          <%= image_tag client.gravatar_url %>
+        </div></td>
+        <td class="link-index"><%= link_to client.full_name, client %></td>
+        <td><%= client.identificacion %></td>
+        <td><%= client.email %></td>
+        <td><%= client.telefono %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

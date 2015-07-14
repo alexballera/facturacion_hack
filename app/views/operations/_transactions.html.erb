@@ -7,13 +7,12 @@
       <th>Pago</th>
       <th>Producto</th>
       <th>Monto</th>
-      <th>Tipo</th>
+      <th>Estado</th>
       <th>Nombre y Apellido</th>
       <th></th>
     </thead>
     <tbody>
-      <% @operations.each_with_index do |operation| %>
-      
+      <% @operations.each_with_index do |operation| %>      
       <tr>
         <td><%= operation.id %></td>
         <td class="link-index"><%= link_to operation.operacion, operation %></td>
@@ -21,7 +20,7 @@
         <td><%= operation.pago %></td>
         <td><%= operation.product.producto %></td>
         <td><%= operation.product.precio %></td>
-        <td><%= operation.client.tipo %></td>
+        <td><%= operation.state %></td>
         <td><%= operation.client.full_name %></td>
       <% end %>
     </tbody>

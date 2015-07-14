@@ -1,0 +1,37 @@
+<ul class="nav nav-tabs nav-justified">
+  <li role="presentation" style="background-color:#e4e4e4;" ><%= link_to "Nuevo Asociado", new_client_path %></li>
+  <li role="presentation" ><%= link_to "Todos", clients_path %></li>
+  <li role="presentation" class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Clientes <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Clientes", clientes_path %></li>      
+      <li class="divider"></li>
+      <li><%= link_to "Recurrentes", clientes_recurrentes_path %></li>
+      <li><%= link_to "Puntuales", clientes_puntuales_path %></li>      
+    </ul>
+  </li>
+  <li role="presentation" class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Sponsor <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Sponsors", sponsors_path %></li>      
+      <li class="divider"></li>
+      <li><%= link_to "Recurrentes", sponsors_recurrentes_path %></li>
+      <li><%= link_to "Puntuales", sponsors_puntuales_path %></li>  
+    </ul>
+  </li>
+  <li role="presentation" class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Proveedores <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Proveedores", proveedores_path %></li>      
+      <li class="divider"></li>
+      <li><%= link_to "Recurrentes", proveedores_recurrentes_path %></li>
+      <li><%= link_to "Puntuales", proveedores_puntuales_path %></li>  
+    </ul>
+  </li>
+</ul>

@@ -1,23 +1,24 @@
 <footer>
-  <ul class="nav nav-pills nav-justified">
+  <ul class="nav nav-pills">
     <li class="boton-footer active", role="presentation", style="a:hover:green"><%= link_to "Retornar", "/operations" %> </li>
-    <li class="boton-footer", role="presentation", style="hover:green"><%= link_to  "Editar", edit_operation_path(@operation) %></li>
-    <li class="boton-footer", role="presentation", style="hover:green"><%= link_to 'Eliminar', @operation, method: :delete, data: { confirm: '¿Estás seguro de eliminar esta factura?' } %></li>
-    
-    <li class="boton-footer", role="presentation", style="hover:green">
-      <% if @operation.may_pay? %>
-      <%= link_to "Pagar", "/operations/#{@operation.id}/pay", method: :put, data: { confirm: '¿Estás seguro de pagar esta factura?' } %>
-      <%end%>
-    </li>
-    <li class="boton-footer", role="presentation", style="hover:green">
-      <% if @operation.may_cancel? %>
-      <%= link_to "Anular", "/operations/#{@operation.id}/cancel", method: :put, data: { confirm: '¿Estás seguro de anular esta factura?' } %>
-      <%end%>
-    </li>
-    <li class="boton-footer", role="presentation", style="hover:green">
-      <% if @operation.may_print? %>
+    <% if @operation.may_print? && current_user.is_asistente? %>
+      <li class="boton-footer", role="presentation", style="hover:green"><%= link_to  "Editar", edit_operation_path(@operation) %></li>
+      <li class="boton-footer", role="presentation", style="hover:green">
       <%= link_to "Emitir", "/operations/#{@operation.id}/print", method: :put, data: { confirm: '¿Estás seguro de emitir esta factura?' } %>
-      <%end%>
+    <%end%>
+    <% if @operation.may_pay? && current_user.is_asistente? %>
+      <li class="boton-footer", role="presentation", style="hover:green">
+      <%= link_to "Pagar", "/operations/#{@operation.id}/pay", method: :put, data: { confirm: '¿Estás seguro de pagar esta factura?' } %>
+    <%end%>
+    <% if current_user.is_admin? %>
+      <li class="boton-footer", role="presentation", style="hover:green"><%= link_to 'Eliminar', @operation, method: :delete, data: { confirm: '¿Estás seguro de eliminar esta factura?' } %></li>
+    <%end%>
+    </li>
+    <% if @operation.may_cancel? && current_user.is_admin?  %>
+      <li class="boton-footer", role="presentation", style="hover:green">
+      <%= link_to "Anular", "/operations/#{@operation.id}/cancel", method: :put, data: { confirm: '¿Estás seguro de anular esta factura?' } %>
+    <%end%>
+      </li>
     </li>
   </ul>
 </footer>

@@ -10,4 +10,6 @@ class Product < ActiveRecord::Base
     too_long: "%{count} caracteres es el máximo permitido" }
   validates :precio, length: { maximum: 10,
     too_long: "%{count} caracteres es el máximo permitido" }
+
+  scope :ultimos, ->{ order(created_at: :asc) }
 end

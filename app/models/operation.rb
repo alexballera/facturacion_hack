@@ -16,14 +16,14 @@ class Operation < ActiveRecord::Base
   validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
 
   scope :ultimos, ->{ order(created_at: :asc) }
-  scope :borrador, ->{ where(state: "Borrador") }
+  scope :borradores, ->{ where(state: "Borrador") }
   scope :impresas, ->{ where(state: "Emitida") }
   scope :pagadas, ->{ where(state: "Pagada") }
   scope :canceladas, ->{ where(state: "Anulada") }
-  scope :compras, ->{ where(operacion: "Compra") }
-  scope :ventas, ->{ where(operacion: "Venta") }
-  scope :contado, ->{ where(operacion: "Contado") }
-  scope :credito, ->{ where(operacion: "Credito") }
+  scope :compras, ->{ where(operacion: 0) }
+  scope :ventas, ->{ where(operacion: 1) }
+  scope :contado, ->{ where(pago: 0) }
+  scope :credito, ->{ where(pago: 1) }
 
   aasm column: "state" do
     state :Borrador, initial: true
@@ -40,7 +40,7 @@ class Operation < ActiveRecord::Base
     end
 
     event :cancel do 
-      transitions from: [:Borrador, :Emitida], to: :Anulada
+      transitions from: [:Borrador, :Emitida, :Pagada], to: :Anulada
     end
   end  
 end

@@ -1,5 +1,6 @@
 <div class="show-center">
-  <h1><%= @client.tipo %>: <strong><%= @client.full_name %></strong></h1>  
+  <h1><%= @client.tipo %>: <strong><%= @client.full_name %></strong></h1> 
+  <%= image_tag @client.gravatar_url %> 
   <div class="table-responsive">
     <table class="table table-hover">
       <thead>
@@ -8,7 +9,6 @@
         <th>Teléfono</th>
         <th>Dirección</th>
         <th>Descripción</th>
-        <th>Tipo</th>
         <th>Frecuencia</th>
         <th>Creado por</th>
       </thead>
@@ -19,7 +19,6 @@
           <td><%= @client.telefono %></td>
           <td><%= @client.direccion %></td>
           <td><%= @client.descripcion %></td>
-          <td><%= @client.tipo %></td>
           <td><%= @client.frecuencia %></td>
           <% unless @client.user.nil? %>
           <td><%= @client.user.username %></td>
@@ -28,11 +27,5 @@
       </tbody>
     </table>
   </div>
-  <footer>
-    <ul class="nav navbar-nav">
-      <li><%= link_to "Clientes", "/clients", :class => 'text-green' %> </li>
-      <li><%= link_to  "Editar", edit_client_path(@client), :class => 'text-blue' %></li>
-      <li><%= link_to 'Borrar', @client, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'text-red' %></li>
-    </ul>  
-  </footer>
+  <%= render "footer" %> 
 </div>

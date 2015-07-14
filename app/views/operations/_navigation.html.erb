@@ -1,0 +1,44 @@
+<ul class="nav nav-tabs nav-justified">
+  <li role="presentation" style="background-color:#e4e4e4;" ><%= link_to "Nueva Factura", new_operation_path %></li>  
+  <li role="presentation" class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Todas <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Todas", operations_path %></li>
+      <li class="divider"></li>
+      <li><%= link_to "Borradores", borradores_path %></li>
+      <li><%= link_to "Impresas", impresas_path %></li>
+      <li><%= link_to "Anuladas", canceladas_path %></li>
+      <li><%= link_to "Pagadas", pagadas_path %></li>
+    </ul>
+  </li>
+  <li role="presentation" class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Compras <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Todas", compras_path %></li>
+      <li class="divider"></li>
+      <li><%= link_to "Borrador", compras_borrador_path %></li>
+      <li><%= link_to "Impresas", compras_impresas_path %></li>
+      <li><%= link_to "Contado", compras_contado_path %></li>
+      <li><%= link_to "Crédito", compras_credito_path %></li>
+    </ul>
+  </li>
+  <li role="presentation" class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      Ventas <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Todas", ventas_path %></li>
+      <li class="divider"></li>
+      <li><%= link_to "Borrador", ventas_borrador_path %></li>
+      <li><%= link_to "Impresas", ventas_impresas_path %></li>
+      <li><%= link_to "Contado", ventas_contado_path %></li>
+      <li><%= link_to "Crédito", ventas_credito_path %></li>
+    </ul>
+  </li>
+  <li role="presentation" ><%= link_to "Por cobrar", ventas_credito_path %></li>
+  <li role="presentation" ><%= link_to "Por Pagar", compras_credito_path %></li>
+</ul>

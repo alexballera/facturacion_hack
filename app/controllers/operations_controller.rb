@@ -7,7 +7,7 @@ class OperationsController < ApplicationController
   # GET /operations
   # GET /operations.json
   def index
-    @operations = Operation.paginate(page: params[:page],per_page:3).ultimos    
+    @operations = Operation.paginate(page: params[:page],per_page:5).ultimos    
   end
 
   # GET /operations/1
@@ -60,7 +60,7 @@ class OperationsController < ApplicationController
     @operation.destroy
     respond_to do |format|
       format.html { redirect_to operations_url, 
-        :alert => 'La operación fue borrada exitosamente' }
+        :alert => 'La factura fue borrada exitosamente' }
       format.json { head :no_content }
     end
   end
@@ -103,62 +103,77 @@ class OperationsController < ApplicationController
   end
 
   #FACTURAS:
-  def borrador 
-    @operations = Operation.borrador
+  def borradores 
+    @operations = Operation.paginate(page: params[:page],per_page:5).borradores
+    render :index
   end 
 
   def impresas 
-    @operations = Operation.impresas
-  end
-
-  def canceladas 
-    @operations = Operation.canceladas
+    @operations = Operation.paginate(page: params[:page],per_page:5).impresas
+    render :index
   end
 
   def pagadas 
-    @operations = Operation.pagadas
+    @operations = Operation.paginate(page: params[:page],per_page:5).pagadas
+    render :index
   end 
+
+  def canceladas 
+    @operations = Operation.paginate(page: params[:page],per_page:5).canceladas
+    render :index
+  end
+
 
   #VENTAS
   def ventas 
-    @operations = Operation.ventas
+    @operations = Operation.paginate(page: params[:page],per_page:5).ventas
+    render :index
   end  
 
   def ventas_borrador
-    @operations = Operation.ventas.borrador
+    @operations = Operation.paginate(page: params[:page],per_page:5).ventas.borradores
+    render :index
   end  
 
   def ventas_impresas
-    @operations = Operation.ventas.impresas
+    @operations = Operation.paginate(page: params[:page],per_page:5).ventas.impresas
+    render :index
   end
 
   def ventas_contado 
-    @operations = Operation.ventas.contado
+    @operations = Operation.paginate(page: params[:page],per_page:5).ventas.contado
+    render :index
   end
 
   def ventas_credito 
-    @operations = Operation.compras.credito
+    @operations = Operation.paginate(page: params[:page],per_page:5).ventas.credito
+    render :index
   end
 
   #COMPRAS
   def compras 
-    @operations = Operation.compras
+    @operations = Operation.paginate(page: params[:page],per_page:5).compras
+    render :index
   end  
 
   def compras_borrador
-    @operations = Operation.compras.borrador
+    @operations = Operation.paginate(page: params[:page],per_page:5).compras.borradores
+    render :index
   end  
 
   def compras_impresas
-    @operations = Operation.compras.impresas
+    @operations = Operation.paginate(page: params[:page],per_page:5).compras.impresas
+    render :index
   end
 
   def compras_contado 
-    @operations = Operation.compras.contado
+    @operations = Operation.paginate(page: params[:page],per_page:5).compras.contado
+    render :index
   end
 
   def compras_credito 
-    @operations = Operation.compras.credito
+    @operations = Operation.paginate(page: params[:page],per_page:5).compras.credito
+    render :index
   end
 
   private
@@ -172,6 +187,6 @@ class OperationsController < ApplicationController
     params.require(:operation).permit(:operacion, :pago, 
       :cantidad, :subtotal, :impuestos, :total, 
       :tasa, :balance, :fecha, :comprobante, :user_id, :client_id, 
-      :product_id, :cover)
+      :product_id, :cover, :state)
   end
 end

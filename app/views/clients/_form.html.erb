@@ -11,9 +11,14 @@
 	<%= f.input :descripcion, placeholder: "Descripción" %>
 	<%= f.input :tipo, :as => :select, :collection => Client.tipos.keys.to_a %>
 	<%= f.input :frecuencia, :as => :select, :collection => Client.frecuencia.keys.to_a %>
-	<div class="field">		
-	<%= f.submit "Guardar", :class => 'text-green font-medium be-transparent' %>
-	<%= link_to "Cancelar", "/clients", :class => 'text-hack font-medium be-transparent' %> 
-	</div>
-	<br>
+	<ul class="nav nav-pills", style="margin:0;padding:0">
+
+  <li class="boton-footer", role="presentation", style="hover:green"> 
+    <%= f.submit "Guardar", :class => 'text-hack font-medium', style:"width:200px;height:50px" %>
+  </li>
+  <li class="boton-footer", role="presentation", style="hover:green">
+    <%= link_to "Cancelar", "/clients", :class => 'text-red font-medium', style:"width:200px;height:50px;background-color:#E4E4E4;border:1px solid grey;border-radius:0;" %> 
+  </li> 
+</ul>
+
 	<% end %>	

@@ -1,33 +1,12 @@
-<div class="show-center">
-	<h1>Clientes</h1>
-	<%= link_to "Crear Nuevo Cliente", new_client_path, :class => 'text-hack font-medium' %>
-	<div class="table-responsive">
-		<table class="table table-hover">
-			<thead>
-				<th>Nombre y Apellido</th>
-				<th>Identificación</th>
-				<th>Email</th>
-				<th>Teléfono</th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</thead>
-			<tbody>
-				<% @clients.each_with_index do |client, index| %>
-				<tr>		
-					<td><div>
-						<%= image_tag client.gravatar_url %>
-					</div></td>
-					<td><%= client.full_name %></td>
-					<td><%= client.identificacion %></td>
-					<td><%= client.email %></td>
-					<td><%= client.telefono %></td>
-					<td><%= link_to  "Detalles", client_path(client), :class => 'text-green'  %></td>
-					<td><%= link_to  "Editar", edit_client_path(client), :class => 'text-blue' %></td>
-					<td><%= link_to "Borrar", client, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'text-red' %></td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
+<div class="form-center">  
+  <strong class="font-large">Clientes:</strong> 
+	<%= render "navigation" %>
+  <%= render "clientes" %>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @clients %>
+      <br><br>
+    </div>
+    <%= will_paginate @clients, :container => false %>
+  </div>  
 </div>

@@ -1,6 +1,10 @@
-<div class="show-center">
-	<h1>Productos</h1>
-	<%= link_to "Crear Nuevo Producto", new_product_path, :class => 'text-hack font-medium' %>
+<div class="form-center">
+<strong class="font-large">Productos:</strong>  
+	
+	<ul class="nav nav-tabs">
+  <li role="presentation" style="background-color:#e4e4e4;" ><%= link_to "Crear Nuevo Producto", new_product_path %></li>  
+  </ul>
+
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<thead>
@@ -16,15 +20,20 @@
 				<% @products.each_with_index do |product, index| %>
 				<tr>
 					<td><%= index + 1 %></td>
-					<td><%= product.producto %></td>
+					<td class="link-index"><%= link_to product.producto, product %></td>
 					<td><%= product.descripcion %></td>
 					<td><%= product.precio %></td>
-					<td><%= link_to  "Detalles", product_path(product), :class => 'text-green'  %></td>
-					<td><%= link_to  "Editar", edit_product_path(product), :class => 'text-blue' %></td>
-					<td><%= link_to "Borrar", product, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'text-red' %></td>
 				</tr>
 				<% end %>
 			</tbody>
 		</table>
 	</div>
+	<div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @products %>
+      <br><br>
+    </div>
+    <%= will_paginate @products, :container => false %>
+  </div>  
+</div>
 </div>

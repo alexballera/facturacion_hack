@@ -1,11 +1,11 @@
 class ClientsController < ApplicationController
 	before_action :authenticate_user!
-  before_action :set_client, only: [:show, :edit, :update, :destroy, :print]
+  before_action :set_client, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_asistente!, only: [:edit, :update, :new]
-  before_action :authenticate_admin!, only: [:destroy, :print]
+  before_action :authenticate_admin!, only: [:destroy]
 
   def index
-		@clients = Client.all
+		@clients = Client.paginate(page: params[:page],per_page:5).ultimos 
 	end
 
 	def show		
@@ -53,39 +53,48 @@ class ClientsController < ApplicationController
 	end
 
   def clientes 
-    @clientes = Client.clientes
+    @clients = Client.paginate(page: params[:page],per_page:5).clientes
+    render :index
   end
 
   def clientes_recurrentes
-    @clientes = Client.clientes.recurrentes
+    @clients = Client.paginate(page: params[:page],per_page:5).clientes.recurrentes
+    render :index
   end
 
   def clientes_puntuales
-    @clientes = Client.clientes.puntuales
+    @clients = Client.paginate(page: params[:page],per_page:5).clientes.puntuales
+    render :index
   end
 
-  def sponsor 
-    @sponsor = Client.sponsor
+  def sponsors 
+    @clients = Client.paginate(page: params[:page],per_page:5).sponsor
+    render :index
   end
 
-  def sponsor_recurrentes
-    @sponsor = Client.sponsor.recurrentes
+  def sponsors_recurrentes
+    @clients = Client.paginate(page: params[:page],per_page:5).sponsor.recurrentes
+    render :index
   end
 
-  def sponsor_puntuales
-    @sponsor = Client.sponsor.puntuales
+  def sponsors_puntuales
+    @clients = Client.paginate(page: params[:page],per_page:5).sponsor.puntuales
+    render :index
   end
 
   def proveedores 
-    @proveedores = Client.proveedores
+    @clients = Client.paginate(page: params[:page],per_page:5).proveedores
+    render :index
   end
 
   def proveedores_recurrentes
-    @proveedores = Client.proveedores.recurrentes
+    @clients = Client.paginate(page: params[:page],per_page:5).proveedores.recurrentes
+    render :index
   end
 
   def proveedores_puntuales
-    @proveedores = Client.proveedores.puntuales
+    @clients = Client.paginate(page: params[:page],per_page:5).proveedores.puntuales
+    render :index
   end
 
 	private

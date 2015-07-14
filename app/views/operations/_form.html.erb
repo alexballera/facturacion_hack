@@ -1,27 +1,30 @@
 <% name ||= "Crear" %>
-<h1><%= name %> Operación</h1>
+<% if name == "Editar" %>
+  <h1><%= name %> Factura  <strong># <%= @operation.id %></strong></h1>
+<%else%>
+  <h1><%= name %> Factura </h1>  
+<%end%>
 <% @operation.errors %>
-  <%= semantic_form_for @operation do |f| %>  
-    <%= f.input :operacion, :as => :select, :collection => Operation.operacions.keys.to_a, label: "Tipo de Operación" %>
-    <%= f.input :client, label: "Escoja un cliente" %><%= link_to "Crear Nuevo Cliente", new_client_path, :class => 'text-hack' %>
-    <br><br>
-    <%= f.input :product, label: "Escoja el producto" %>
-    <%= link_to "Crear Nuevo Producto", new_product_path, :class => 'text-hack' %>
-    <br><br>
-    <%= f.input :cantidad %>
-    <%= f.input :pago, :as => :select, :collection => Operation.pagos.keys.to_a, label: "Forma de Pago" %>
-    <div class="field" style="font-weight: bold;">
-      Ingrese el Comprobante (imagen): <%= f.file_field :cover, :class => 'text-hack font-medium' %>
-    </div>
-    <ul class="nav nav-pills", style="margin:0;padding:0">
- 
-    <li class="boton-footer", role="presentation", style="hover:green"> 
-  <%= f.submit "Guardar", :class => 'text-hack font-medium', style:"width:200px;height:50px" %>
-  </li>
-  <li class="boton-footer", role="presentation", style="hover:green">
-  <%= link_to "Cancelar", "/operations", :class => 'text-red font-medium', style:"width:200px;height:50px;background-color:#E4E4E4;border:1px solid grey;border-radius:0;" %> 
-  </li>  
+<%= semantic_form_for @operation do |f| %>  
+  <%= f.input :operacion, :as => :select, :collection => Operation.operacions.keys.to_a, label: "Tipo de Operación" %>
+  <%= f.input :client, label: "Escoja un cliente" %><%= link_to "Crear Nuevo Cliente", new_client_path, :class => 'text-hack' %>
+  <br><br>
+  <%= f.input :product, label: "Escoja el producto" %>
+  <%= link_to "Crear Nuevo Producto", new_product_path, :class => 'text-hack' %>
+  <br><br>
+  <%= f.input :cantidad %>
+  <%= f.input :pago, :as => :select, :collection => Operation.pagos.keys.to_a, label: "Forma de Pago" %>
+  <div class="field" style="font-weight: bold;">
+    Ingrese el Comprobante (imagen): <%= f.file_field :cover, :class => 'text-hack font-medium' %>
+  </div>
+  <ul class="nav nav-pills", style="margin:0;padding:0">
 
+    <li class="boton-footer", role="presentation", style="hover:green"> 
+      <%= f.submit "Guardar", :class => 'text-hack font-medium', style:"width:200px;height:50px" %>
+    </li>
+    <li class="boton-footer", role="presentation", style="hover:green">
+      <%= link_to "Cancelar", "/operations", :class => 'text-red font-medium', style:"width:200px;height:50px;background-color:#E4E4E4;border:1px solid grey;border-radius:0;" %> 
+    </li> 
   </ul>
   <br>  
 <% end %>

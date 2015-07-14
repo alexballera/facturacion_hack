@@ -19,24 +19,14 @@ class Client < ActiveRecord::Base
   enum tipo: [ :Cliente, :Sponsor, :Proveedor ]
 	enum frecuencia: [ :Recurrente, :Puntual ]
 
-  scope :clientes, ->{ where(tipo: "Cliente") }
-  scope :sponsor, ->{ where(tipo: "Sponsor") }
-  scope :proveedores, ->{ where(tipo: "Proveedor") }
-  scope :recurrentes, ->{ where(frecuencia: "Recurrente") }
-  scope :puntuales, ->{ where(tipo: "Puntual") }
+  scope :ultimos, ->{ order(created_at: :asc) }
+  scope :clientes, ->{ where(tipo: 0) }
+  scope :sponsor, ->{ where(tipo: 1) }
+  scope :proveedores, ->{ where(tipo: 2) }
+  scope :recurrentes, ->{ where(frecuencia: 0) }
+  scope :puntuales, ->{ where(tipo: 1) }
 
   def full_name    
     [nombre, apellido].join(' ')    
-  end 
-
-  def avatar
-    # get the email from URL-parameters or what have you and make lowercase
-    email_address = self.email.downcase
-     
-    # create the md5 hash
-    hash = Digest::MD5.hexdigest(email_address)
-     
-    # compile URL which can be used in <img src="RIGHT_HERE"...
-    image_src = "http://www.gravatar.com/avatar/#{hash}"
-  end
+  end   
 end

@@ -1,0 +1,11 @@
+<footer>
+  <ul class="nav nav-pills">
+    <li class="boton-footer active", role="presentation", style="a:hover:green"><%= link_to "Retornar", "/clients" %> </li>
+    <% if current_user.is_asistente? %>
+      <li class="boton-footer", role="presentation", style="hover:green"><%= link_to  "Editar", edit_client_path(@client) %></li>      
+    <%end%>    
+    <% if current_user.is_admin? %>
+      <li class="boton-footer", role="presentation", style="hover:green"><%= link_to 'Eliminar', @client, method: :delete, data: { confirm: '¿Estás seguro de eliminar este cliente?' } %></li>
+    <%end%>    
+  </ul>
+</footer>

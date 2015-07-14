@@ -1,9 +1,32 @@
 <div class="show-center">
   <h1 class="text-center" style="text-transform: uppercase;"><strong><%= @operation.operacion %> # <%= @operation.id %> </strong></h1>  
 <hr>  
-  <div class="table-responsive">
+  <div class="table-responsive"> 
     <table class="table table-hover">
-    <h2>Datos de la <%= @operation.operacion %></h2>
+    <div class="row">
+      <div class="col-md-1"><%= image_tag @operation.client.gravatar_url %></div>
+      <div class="col-md-2"><h3><%= @operation.client.tipo %></h3></div>
+      <div class="col-md-8"></div>
+    </div>     
+        <thead>
+        <th>Nombre y Apellido</th>
+        <th>Cédula/RIF</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @operation.client.full_name %></td>
+          <td><%= @operation.client.identificacion %></td>
+          <td><%= @operation.client.email %></td>
+          <td><%= @operation.client.telefono %></td>
+          <td><%= @operation.client.direccion %></td>
+        </tr>
+      </tbody> 
+    </table>
+    <table class="table table-hover">
+    <h3>Datos de la <%= @operation.operacion %></h3>
       <thead>
         <th>Forma de Pago</th>
         <th>Estado</th>
@@ -22,33 +45,9 @@
       </tbody>
     </table>
     <div class="field">
-      <p><strong>Comprobante de Pago</strong></p>      
+    <h3>Comprobante de Pago</h3>           
         <%= image_tag @operation.cover.url(:medium) %>
     </div>
-
-    <table class="table table-hover">
-    <h3><%= @operation.client.tipo %></h3> 
-        <thead>
-        <th></th>
-        <th>Nombre y Apellido</th>
-        <th>Cédula/RIF</th>
-        <th>Email</th>
-        <th>Teléfono</th>
-        <th>Dirección</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td><div class=>
-        <%= image_tag @operation.client.gravatar_url %>
-      </div></td>
-          <td><%= @operation.client.full_name %></td>
-          <td><%= @operation.client.identificacion %></td>
-          <td><%= @operation.client.email %></td>
-          <td><%= @operation.client.telefono %></td>
-          <td><%= @operation.client.direccion %></td>
-        </tr>
-      </tbody> 
-    </table>
     <table class="table table-hover">
     <h3>Producto</h3>
       <thead>

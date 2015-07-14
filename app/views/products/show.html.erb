@@ -20,11 +20,9 @@
       </tbody>
     </table>
   </div>
-  <footer>
-    <ul class="nav navbar-nav">
-      <li><%= link_to "Productos", "/products", :class => 'text-green' %> </li>
-      <li><%= link_to  "Editar", edit_product_path(@product), :class => 'text-blue' %></li>
-      <li><%= link_to 'Borrar', @product, method: :delete, data: { confirm: 'Estás seguro?' }, :class => 'text-red' %></li>
-    </ul>  
-  </footer>
+  <hr>
+  <%= render "footer" %> 
 </div>
+<br>
+<br>
+<br>

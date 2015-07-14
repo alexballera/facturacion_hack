@@ -1,11 +1,11 @@
 class ProductsController < ApplicationController
 	before_action :authenticate_user!
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :print]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_asistente!, only: [:edit, :update, :new]
-  before_action :authenticate_admin!, only: [:destroy, :print]
+  before_action :authenticate_admin!, only: [:destroy]
 
 	def index
-		@products = Product.all
+		@products = Product.paginate(page: params[:page],per_page:5).ultimos
 	end
 
 	def show		
