@@ -3,8 +3,8 @@
   <% @user.errors %>
   <%= semantic_form_for @user do |f| %>
   <%= f.input :email %>
-  <%= f.input :username, label: "Contraseña" %>
-  <%= f.input :permission_level, label: "Nivel (1=Usuario; 2=Asistente; 3=Admin)" %>
+  <%= f.input :username, label: "Username" %>
+  <%= f.input :permission_level, label: "Nivel (1 = Usuario; 2 = Asistente; 3 = Admin)" %>
   <ul class="nav nav-pills", style="margin:0;padding:0">
 
     <li class="boton-footer", role="presentation", style="hover:green"> 
