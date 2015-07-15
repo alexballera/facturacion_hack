@@ -62,18 +62,20 @@
       <thead>
         <th>Nombre</th>
         <th>Descripción</th>
+        <th>Cantidad</th>
         <th>Precio</th>
-        <th>Impuestos</th>
         <th>Subtotal</th>
+        <th>Impuestos</th>
         <th>Total</th>
       </thead>
       <tbody>
         <tr>
           <td><%= @operation.product.producto %></td>
           <td><%= @operation.product.descripcion %></td>
+          <td><%= @operation.cantidad %></td>
           <td><%= @operation.product.precio %></td>
-          <td><%= @operation.impuestos %></td>
           <td><%= @operation.subtotal %></td>
+          <td><%= @operation.impuestos %></td>
           <td><%= @operation.total %></td>
         </tr>
       </tbody>

@@ -45,6 +45,18 @@ class Operation < ActiveRecord::Base
     end
   end 
 
+  def self.invoice operation, product
+    tasa = operation[:tasa].to_i
+    cantidad = operation[:cantidad].to_i
+    subtotal = (cantidad*product.precio.to_i)
+    impuestos = (tasa*subtotal/100)
+    total = (subtotal+impuestos) 
+    operation[:subtotal] = subtotal
+    operation[:impuestos] = impuestos
+    operation[:total] = total    
+    operation.save
+  end
+
   def send_mail
      OperationMailer.new_operation(self).deliver_now
   end

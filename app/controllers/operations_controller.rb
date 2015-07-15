@@ -28,8 +28,12 @@ class OperationsController < ApplicationController
   # POST /operations.json
   def create
     @operation = current_user.operations.new(operation_params)
+    @product = Product.find(operation_params[:product_id])
+    operation = @operation
+    product = @product
     respond_to do |format|
-      if @operation.save
+      if Operation.invoice operation, product        
+        @operation.save
         format.html { redirect_to @operation, :notice => 'La operación fue creada exitosamente y se envió el email al interesado' }
         format.json { render :show, status: :created, location: @operation }
       else
@@ -42,8 +46,18 @@ class OperationsController < ApplicationController
   # PATCH/PUT /operations/1
   # PATCH/PUT /operations/1.json
   def update
+    @product = Product.find(operation_params[:product_id])
+    operation = @operation
+    product = @product
     respond_to do |format|
-      if @operation.update(operation_params)
+      if Operation.invoice operation, product 
+        @operation.update(operation_params)
+        if operation.subtotal != product.precio*operation.cantidad
+          Operation.invoice operation, product 
+        else
+          @operation.update(operation_params)
+        end  
+        @operation.update(operation_params)
         format.html { redirect_to @operation, :notice => 'La operación fue editada exitosamente' }
         format.json { render :show, status: :ok, location: @operation }
       else

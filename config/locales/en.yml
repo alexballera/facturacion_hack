@@ -37,7 +37,7 @@ en:
         other: "Total: <b>%{count} registros&nbsp;</b> de %{model}"
 
       multi_page: "%{model} %{from} - %{to} de %{count}"
-      multi_page_html: "<b>%{from}&nbsp entradas;-&nbsp;%{to}</b> de <b>%{count}</b>"
+      multi_page_html: "<b>&nbsp;%{to}</b> de <b>%{count}</b>"
 
 
   breadcrumbs:
