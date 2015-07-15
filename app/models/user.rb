@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+  has_many :products
+  has_many :clients
+  has_many :operations
+
+  include PermissionsConcern  
   include Gravtastic
   gravtastic
   
@@ -8,8 +13,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   validates :username, :uniqueness => {:message => "Ya este usuario existe, intenta de nuevo"}, length: { maximum: 12,
     too_long: "%{count} caracteres es el máximo permitido" }
-  has_many :products
-  has_many :clients
-  has_many :operations
-  include PermissionsConcern  
+
+  scope :ultimos, ->{ order(created_at: :asc) }
+
 end

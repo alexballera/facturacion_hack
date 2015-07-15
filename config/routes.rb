@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
+  
   root 'welcome#index' 
-	
-  devise_for :users
-  resources :clients 
-  resources :products
-  get "/dashboard" => "welcome#dashboard"
-  #OPERACIONES
-  resources :operations
+  
+  devise_for :users    
+  resources :products, :clients, :operations, :users
+
+  #OPERACIONES  
   put "/operations/:id/print" => "operations#print"
   put "/operations/:id/pay" => "operations#pay"
   put "/operations/:id/cancel" => "operations#cancel"
@@ -28,6 +27,7 @@ Rails.application.routes.draw do
   get 'ventas/credito' => 'operations#ventas_credito'
 
   #Clientes 
+  
   get 'clientes' => 'clients#clientes'
   get 'clientes/recurrentes' => 'clients#clientes_recurrentes'
   get 'clientes/puntuales' => 'clients#clientes_puntuales'

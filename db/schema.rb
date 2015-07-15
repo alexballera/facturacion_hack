@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150711023040) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "clients", force: :cascade do |t|
     t.string   "nombre",         limit: 15
     t.string   "apellido",       limit: 15
@@ -28,34 +31,34 @@ ActiveRecord::Schema.define(version: 20150711023040) do
     t.datetime "updated_at",                             null: false
   end
 
-  add_index "clients", ["user_id"], name: "index_clients_on_user_id"
+  add_index "clients", ["user_id"], name: "index_clients_on_user_id", using: :btree
 
   create_table "operations", force: :cascade do |t|
-    t.integer  "operacion",                                             default: 1
-    t.integer  "pago",                                                  default: 1
-    t.integer  "cantidad",           limit: 4,                          default: 1,            null: false
-    t.decimal  "subtotal",                     precision: 10, scale: 2
-    t.decimal  "impuestos",                    precision: 10, scale: 2
-    t.decimal  "total",                        precision: 10, scale: 2
-    t.decimal  "tasa",                         precision: 4,  scale: 2, default: 12.0
-    t.decimal  "balance",                      precision: 10, scale: 2
-    t.date     "fecha",                                                 default: '2015-07-14'
+    t.integer  "operacion",                                   default: 1
+    t.integer  "pago",                                        default: 1
+    t.integer  "cantidad",                                    default: 1,            null: false
+    t.decimal  "subtotal",           precision: 10, scale: 2
+    t.decimal  "impuestos",          precision: 10, scale: 2
+    t.decimal  "total",              precision: 10, scale: 2
+    t.decimal  "tasa",               precision: 4,  scale: 2, default: 12.0
+    t.decimal  "balance",            precision: 10, scale: 2
+    t.date     "fecha",                                       default: '2015-07-14'
     t.string   "comprobante"
     t.integer  "user_id"
     t.integer  "client_id"
     t.integer  "product_id"
-    t.datetime "created_at",                                                                   null: false
-    t.datetime "updated_at",                                                                   null: false
+    t.datetime "created_at",                                                         null: false
+    t.datetime "updated_at",                                                         null: false
     t.string   "cover_file_name"
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
-    t.string   "state",                                                 default: "Borrador"
+    t.string   "state",                                       default: "Borrador"
   end
 
-  add_index "operations", ["client_id"], name: "index_operations_on_client_id"
-  add_index "operations", ["product_id"], name: "index_operations_on_product_id"
-  add_index "operations", ["user_id"], name: "index_operations_on_user_id"
+  add_index "operations", ["client_id"], name: "index_operations_on_client_id", using: :btree
+  add_index "operations", ["product_id"], name: "index_operations_on_product_id", using: :btree
+  add_index "operations", ["user_id"], name: "index_operations_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "producto",    limit: 30,                          null: false
@@ -66,7 +69,7 @@ ActiveRecord::Schema.define(version: 20150711023040) do
     t.integer  "user_id"
   end
 
-  add_index "products", ["user_id"], name: "index_products_on_user_id"
+  add_index "products", ["user_id"], name: "index_products_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 30, default: "", null: false
@@ -85,7 +88,12 @@ ActiveRecord::Schema.define(version: 20150711023040) do
     t.integer  "permission_level",                  default: 1
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "clients", "users"
+  add_foreign_key "operations", "clients"
+  add_foreign_key "operations", "products"
+  add_foreign_key "operations", "users"
+  add_foreign_key "products", "users"
 end

@@ -1,24 +1,23 @@
 <div class="show-center">
-  <h1 class="text-center" style="text-transform: uppercase;">
- 
+  <h1 class="text-center" style="text-transform: uppercase;">  
   <%case @operation.state
-    when "Borrador"%>
-    <strong>Comprobante de <%= @operation.operacion %> # <%= @operation.id %> </strong></h1>   
+  when "Borrador"%>
+  <strong>Comprobante de <%= @operation.operacion %> # <%= @operation.id %> </strong></h1>
   <%when "Emitida" || "Pagada" %>
-    <strong>Factura de <%= @operation.operacion %> # <%= @operation.id %> </strong></h1> 
+  <strong>Factura de <%= @operation.operacion %> # <%= @operation.id %> </strong></h1>
   <%when ("Emitida" || "Pagada" || "Borrador") && "Anulada" %>
-  <strong><%= @operation.operacion %> # <%= @operation.id %> Anulada</strong></h1> 
+  <strong><%= @operation.operacion %> # <%= @operation.id %> Anulada</strong>
   <%end%>
-    
-<hr>  
-  <div class="table-responsive"> 
+  </h1>  
+  <hr>
+  <div class="table-responsive">
     <table class="table table-hover">
-    <div class="row">
-      <div class="col-md-1"><%= image_tag @operation.client.gravatar_url %></div>
-      <div class="col-md-2"><h3><%= @operation.client.tipo %></h3></div>
-      <div class="col-md-8"></div>
-    </div>     
-        <thead>
+      <div class="row">
+        <div class="col-md-1"><%= image_tag @operation.client.gravatar_url %></div>
+        <div class="col-md-2"><h3><%= @operation.client.tipo %></h3></div>
+        <div class="col-md-8"></div>
+      </div>
+      <thead>
         <th>Nombre y Apellido</th>
         <th>Cédula/RIF</th>
         <th>Email</th>
@@ -33,10 +32,10 @@
           <td><%= @operation.client.telefono %></td>
           <td><%= @operation.client.direccion %></td>
         </tr>
-      </tbody> 
+      </tbody>
     </table>
     <table class="table table-hover">
-    <h3>Datos de la <%= @operation.operacion %></h3>
+      <h3>Datos de la <%= @operation.operacion %></h3>
       <thead>
         <th>Forma de Pago</th>
         <th>Estado</th>
@@ -44,22 +43,22 @@
         <th>Creada por</th>
       </thead>
       <tbody>
-        <tr>          
+        <tr>
           <td><%= @operation.pago %></td>
           <td><%= @operation.state %></td>
           <td><%= @operation.fecha %></td>
           <td><% unless @operation.user.nil? %>
             <%= @operation.user.username %>
-          <%end%></td>                
+          <%end%></td>
         </tr>
       </tbody>
     </table>
     <div class="field">
-    <h3>Comprobante de Pago</h3>           
-        <%= image_tag @operation.cover.url(:medium) %>
+      <h3>Comprobante de Pago</h3>
+      <%= image_tag @operation.cover.url(:medium) %>
     </div>
     <table class="table table-hover">
-    <h3>Producto</h3>
+      <h3>Producto</h3>
       <thead>
         <th>Nombre</th>
         <th>Descripción</th>
@@ -69,7 +68,7 @@
         <th>Total</th>
       </thead>
       <tbody>
-        <tr>          
+        <tr>
           <td><%= @operation.product.producto %></td>
           <td><%= @operation.product.descripcion %></td>
           <td><%= @operation.product.precio %></td>
@@ -81,8 +80,8 @@
     </table>
   </div>
   <hr>
-  <%= render "footer" %> 
-</div>
+  <%= render "footer" %>
+
 <br>
 <br>
 <br>

@@ -30,14 +30,14 @@ en:
       single_page:
         zero:  "%{model}, no encontrado!"
         one:   "1 %{model}"
-        other: "all %{count} %{model}"
+        other: "Total: %{count} registros de %{model}"
       single_page_html:
         zero:  "%{model}, no encontrado!"
         one:   "<b>1</b> %{model}"
-        other: "<b>all&nbsp;%{count}</b> %{model}"
+        other: "Total: <b>%{count} registros&nbsp;</b> de %{model}"
 
       multi_page: "%{model} %{from} - %{to} de %{count}"
-      multi_page_html: "<b> Items %{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b>"
+      multi_page_html: "<b>%{from}&nbsp entradas;-&nbsp;%{to}</b> de <b>%{count}</b>"
 
 
   breadcrumbs:

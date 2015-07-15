@@ -1,0 +1,43 @@
+<div class="form-center">
+<strong class="font-large">Usuarios:</strong>  
+
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<th>Avatar</th>
+				<th>Username</th>
+        <th>Email</th>
+				<th>Nivel</th>
+				<th></th>
+        <th></th>
+			</thead>
+			<tbody>
+				<% @users.each do |user| %>
+				<tr>
+					<td><%= image_tag user.gravatar_url %></td>
+					<td><%= link_to user.username, user %></td>
+          <td><%= user.email %></td>
+          <%case user.permission_level
+            when 1 %>
+            <td>Usuario</td>
+            <% when 2 %>
+            <td>Asistente</td>
+            <% when 3 %>
+            <td>Admin</td>
+          <%end%>
+          
+          <td><%= link_to  "Editar", edit_user_path(user), style:"color:text-hack" %></td>
+          <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: '¿Estás seguro de eliminar este usuario?' }, style:"color:text-red" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info @users %>
+      <br><br>
+    </div>
+    <%= will_paginate @users, :container => false %>
+  </div>	
+</div>

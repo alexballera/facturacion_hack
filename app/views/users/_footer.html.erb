@@ -1,0 +1,9 @@
+<footer>
+  <ul class="nav nav-pills">
+    <li class="boton-footer active", role="presentation", style="a:hover:green"><%= link_to "Retornar", "/users" %> </li>
+    <% if current_user.is_admin? %>
+      <li class="boton-footer", role="presentation", style="hover:green"><%= link_to  "Editar", edit_user_path(@user) %></li>
+      <li class="boton-footer", role="presentation", style="hover:green"><%= link_to 'Eliminar', @user, method: :delete, data: { confirm: '¿Estás seguro de eliminar este usuario?' } %></li>
+    <%end%>    
+  </ul>
+</footer>

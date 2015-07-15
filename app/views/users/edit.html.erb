@@ -1,0 +1,18 @@
+<div class="form-center"> 
+  <h1>Editar Usuario</h1>
+  <% @user.errors %>
+  <%= semantic_form_for @user do |f| %>
+  <%= f.input :email %>
+  <%= f.input :username, label: "Contraseña" %>
+  <%= f.input :permission_level, label: "Nivel (1=Usuario; 2=Asistente; 3=Admin)" %>
+  <ul class="nav nav-pills", style="margin:0;padding:0">
+
+    <li class="boton-footer", role="presentation", style="hover:green"> 
+      <%= f.submit "Guardar", :class => 'text-hack font-medium', style:"width:200px;height:50px" %>
+    </li>
+    <li class="boton-footer", role="presentation", style="hover:green">
+      <%= link_to "Cancelar", @user, :class => 'text-red font-medium', style:"width:200px;height:50px;background-color:#E4E4E4;border:1px solid grey;border-radius:0;" %> 
+    </li> 
+  </ul>
+  <% end %>	
+</div>
