@@ -30,7 +30,7 @@ class OperationsController < ApplicationController
     @operation = current_user.operations.new(operation_params)
     respond_to do |format|
       if @operation.save
-        format.html { redirect_to @operation, :notice => 'La operación fue creada exitosamente' }
+        format.html { redirect_to @operation, :notice => 'La operación fue creada exitosamente y se envió el email al interesado' }
         format.json { render :show, status: :created, location: @operation }
       else
         format.html { render :new }

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+</head>
+<body>
+  <h1>Envío de <b>comprobante de <%= @operation.operacion.downcase %></b></h1>
+  <p>Reciba un cordial saludo y agradecido <br> 
+  por su atención a continuación le envío  <br>
+  por este medio un comprobante el cual  <br>
+  puede ver en detalle en el enlace de abajo <br>
+  </p>
+  <p><%= link_to "Leer más", operation_url(@operation) %></p>
+  <p>Atentamente</p>
+  <p>Hack</p>
+</body>
+</html>

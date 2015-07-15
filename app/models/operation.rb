@@ -11,6 +11,7 @@ class Operation < ActiveRecord::Base
   validates :pago, inclusion: { in: :pago }
   enum operacion: [ :Compra, :Venta ]
   enum pago: [ :Contado, :Credito ]
+  after_create :send_mail
   
   has_attached_file :cover, styles: { medium: "300x300>", thumb: "100x100>"}, :default_url => "missing.png"
   validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
@@ -42,5 +43,10 @@ class Operation < ActiveRecord::Base
     event :cancel do 
       transitions from: [:Borrador, :Emitida, :Pagada], to: :Anulada
     end
-  end  
+  end 
+
+  def send_mail
+     OperationMailer.new_operation(self).deliver_now
+  end
+
 end
