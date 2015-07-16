@@ -53,7 +53,9 @@ gem 'prawn-table'
 
 gem "prawnto_2", :require => "prawnto"
 
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
+
+gem 'puma'
 
 ruby '2.2.1'
 
