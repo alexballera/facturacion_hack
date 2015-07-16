@@ -55,8 +55,6 @@ gem "prawnto_2", :require => "prawnto"
 
 gem 'rails_12factor'
 
-gem 'puma'
-
 ruby '2.2.1'
 
 
