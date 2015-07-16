@@ -53,6 +53,11 @@ gem 'prawn-table'
 
 gem "prawnto_2", :require => "prawnto"
 
+gem 'rails_12factor'
+
+ruby '2.2.1'
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
