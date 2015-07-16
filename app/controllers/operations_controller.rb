@@ -3,6 +3,7 @@ class OperationsController < ApplicationController
   before_action :set_operation, only: [:show, :edit, :update, :destroy, :print, :cancel, :pay]
   before_action :authenticate_asistente!, only: [:edit, :update, :new, :pay, :print]
   before_action :authenticate_admin!, only: [:destroy, :cancel]
+  prawnto :prawn => { :page_size => 'A4', :margin => 20 }
 
   # GET /operations
   # GET /operations.json
@@ -12,7 +13,15 @@ class OperationsController < ApplicationController
 
   # GET /operations/1
   # GET /operations/1.json
-  def show
+  def show    
+    operation = Operation.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = FacturaPdf.new(@operation)
+        send_data pdf.render, filename: "factura_#{@operation.id}.pdf", type: 'application/pdf'
+      end
+    end 
   end
 
   # GET /operations/new

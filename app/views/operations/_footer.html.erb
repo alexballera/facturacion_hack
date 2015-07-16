@@ -1,6 +1,7 @@
 <footer>
   <ul class="nav nav-pills">
     <li class="boton-footer active", role="presentation", style="a:hover:green"><%= link_to "Retornar", "/operations" %> </li>
+    <li><%= link_to " ", operation_path(@operation, :format => 'pdf'), :class => "btn btn-mini btn-success glyphicon glyphicon-save" %></li>
     <% if @operation.may_print? && current_user.is_asistente? %>
       <li class="boton-footer", role="presentation", style="hover:green"><%= link_to  "Editar", edit_operation_path(@operation) %></li>
       <li class="boton-footer", role="presentation", style="hover:green">

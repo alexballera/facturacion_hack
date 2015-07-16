@@ -47,6 +47,12 @@ gem 'gravtastic'
 
 gem 'dotenv-rails'
 
+gem 'prawn'
+
+gem 'prawn-table'
+
+gem "prawnto_2", :require => "prawnto"
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
