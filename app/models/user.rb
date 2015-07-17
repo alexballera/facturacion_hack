@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  has_many :products
-  has_many :clients
-  has_many :operations
+  has_many :products, dependent: :destroy
+  has_many :clients, dependent: :destroy
+  has_many :operations, dependent: :destroy
 
   include PermissionsConcern  
   include Gravtastic

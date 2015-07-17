@@ -3,7 +3,7 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.string :producto, null: false, limit: 30
       t.string :descripcion, limit: 150
-      t.decimal :precio, precision: 8, scale: 2, null: false
+      t.decimal :precio, precision: 10, scale: 2, null: false
 
       t.timestamps null: false
     end

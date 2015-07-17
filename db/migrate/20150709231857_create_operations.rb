@@ -8,9 +8,7 @@ class CreateOperations < ActiveRecord::Migration
       t.decimal :impuestos, precision: 10, scale: 2
       t.decimal :total, precision: 10, scale: 2
       t.decimal :tasa, precision: 4, scale: 2, default: 12
-      t.decimal :balance, precision: 10, scale: 2
       t.date :fecha, default: Time.now
-      t.string :comprobante
       t.references :user, index: true, foreign_key: true
       t.references :client, index: true, foreign_key: true
       t.references :product, index: true, foreign_key: true

@@ -3,7 +3,7 @@ class Client < ActiveRecord::Base
   gravtastic
   
   belongs_to :user
-  has_many :operations
+  has_many :operations, dependent: :destroy
   validates :nombre, :identificacion, :email, :telefono, :direccion, :tipo, :frecuencia, 
   :presence => {:message => "No debe estar en blanco"}
   validates :nombre, :apellido, :identificacion, :telefono, length: { in: 2..15,
