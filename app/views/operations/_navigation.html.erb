@@ -1,5 +1,7 @@
 <ul class="nav nav-tabs nav-justified">
+  <% if current_user.is_asistente? %>
   <li role="presentation" style="background-color:#e4e4e4;" ><%= link_to "Nueva Factura", new_operation_path %></li>  
+  <%end%>  
   <li role="presentation" class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
       Todas <span class="caret"></span>

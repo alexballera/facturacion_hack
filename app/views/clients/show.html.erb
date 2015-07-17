@@ -8,7 +8,6 @@
         <th>Email</th>
         <th>Teléfono</th>
         <th>Dirección</th>
-        <th>Descripción</th>
         <th>Frecuencia</th>
         <th>Creado por</th>
       </thead>
@@ -18,7 +17,6 @@
           <td><%= @client.email %></td>
           <td><%= @client.telefono %></td>
           <td><%= @client.direccion %></td>
-          <td><%= @client.descripcion %></td>
           <td><%= @client.frecuencia %></td>
           <% unless @client.user.nil? %>
           <td><%= @client.user.username %></td>

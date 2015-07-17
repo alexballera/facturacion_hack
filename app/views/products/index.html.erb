@@ -1,10 +1,10 @@
 <div class="form-center">
-<strong class="font-large">Productos:</strong>  
-	
+<strong class="font-large">Productos:</strong>
 	<ul class="nav nav-tabs">
+  <% if current_user.is_asistente? %>
   <li role="presentation" style="background-color:#e4e4e4;" ><%= link_to "Crear Nuevo Producto", new_product_path %></li>  
   </ul>
-
+  <%end%>
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<thead>

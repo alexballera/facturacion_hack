@@ -8,7 +8,6 @@
 	<%= f.input :email,label: "Correo electrónico", placeholder: "Email" %>
 	<%= f.input :telefono, placeholder: "Teléfono" %>
 	<%= f.input :direccion, placeholder: "Dirección" %>
-	<%= f.input :descripcion, placeholder: "Descripción" %>
 	<%= f.input :tipo, :as => :select, :collection => Client.tipos.keys.to_a %>
 	<%= f.input :frecuencia, :as => :select, :collection => Client.frecuencia.keys.to_a %>
 	<ul class="nav nav-pills", style="margin:0;padding:0">

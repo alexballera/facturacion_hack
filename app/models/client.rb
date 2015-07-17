@@ -12,7 +12,7 @@ class Client < ActiveRecord::Base
   validates :email, :identificacion, uniqueness: true
   validates :email, length: { maximum: 30,
     too_long: "%{count} caracteres es el máximo permitido" }
-  validates :direccion, :descripcion, length: { maximum: 150,
+  validates :direccion, length: { maximum: 150,
     too_long: "%{count} caracteres es el máximo permitido" }
   validates :tipo, inclusion: { in: :tipo }
   validates :frecuencia, inclusion: { in: :frecuencia }
