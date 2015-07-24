@@ -16,12 +16,16 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, :notice => 'El usuario fue editado exitosamente' }
-        format.json { render :show, status: :ok, location: @user }
+      if current_user.is_admin? && @user.is_master?
+        format.html { redirect_to @user, :alert => 'No puedes editar a un Master' }
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        if @user.update(user_params)
+          format.html { redirect_to @user, :notice => 'El usuario fue editado exitosamente' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end        
       end
     end
   end

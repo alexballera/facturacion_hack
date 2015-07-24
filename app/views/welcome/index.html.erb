@@ -2,7 +2,18 @@
   <div class="col-xs-12 welcome">    
     <% if user_signed_in? %>
       <p><strong class="bienvenido">BIENVENIDO </strong></p>
-      <p id="usuario"><strong><%= current_user.username %></strong></p>
+      <p id="usuario"><strong>
+        <%case current_user.permission_level
+          when 1 %>
+            Usuario <%= current_user.username %>
+          <% when 2 %>
+            Asistente <%= current_user.username %>
+          <% when 3 %>
+            Admin <%= current_user.username %>
+          <% when 4 %>
+            Master <%= current_user.username %>
+        <%end%>
+      </strong></p>
       <% else %>
       <p><strong class="bienvenido">BIENVENIDO</strong></p>
     <% end %>  
