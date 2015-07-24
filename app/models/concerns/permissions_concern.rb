@@ -11,5 +11,9 @@ module PermissionsConcern
 
 	def is_admin?
 		self.permission_level >= 3
-	end	
+	end
+
+  def is_master?
+    self.permission_level >= 4
+  end	
 end
