@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716172017) do
+ActiveRecord::Schema.define(version: 20150711023040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150716172017) do
     t.string   "email",          limit: 30
     t.string   "telefono",       limit: 15
     t.string   "direccion",      limit: 150
+    t.string   "descripcion",    limit: 150
     t.integer  "tipo",                       default: 0
     t.integer  "frecuencia",                 default: 0
     t.integer  "user_id"
@@ -40,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150716172017) do
     t.decimal  "impuestos",          precision: 10, scale: 2
     t.decimal  "total",              precision: 10, scale: 2
     t.decimal  "tasa",               precision: 4,  scale: 2, default: 12.0
-    t.date     "fecha",                                       default: '2015-07-14'
+    t.date     "fecha",                                       default: '2015-09-28'
     t.integer  "user_id"
     t.integer  "client_id"
     t.integer  "product_id"
@@ -58,12 +59,12 @@ ActiveRecord::Schema.define(version: 20150716172017) do
   add_index "operations", ["user_id"], name: "index_operations_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "producto",    limit: 30,                          null: false
-    t.decimal  "precio",                  precision: 8, scale: 2, null: false
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.integer  "user_id"
+    t.string   "producto",    limit: 30,                           null: false
     t.string   "descripcion", limit: 150
+    t.decimal  "precio",                  precision: 10, scale: 2, null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.integer  "user_id"
   end
 
   add_index "products", ["user_id"], name: "index_products_on_user_id", using: :btree
@@ -82,7 +83,7 @@ ActiveRecord::Schema.define(version: 20150716172017) do
     t.string   "username",               limit: 12
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
-    t.integer  "permission_level",       limit: 2,  default: 1
+    t.integer  "permission_level",                  default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
